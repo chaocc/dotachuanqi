@@ -1,0 +1,57 @@
+<div class="container">
+	<div class="page-header">
+		<h1 style="display:none;">用户列表</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/user">用户列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/user/add">添加新用户</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑用户</a></li>
+			<?php endif;  ?>
+			<li><a href="console/login/change">修改密码</a></li>
+		</ul>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">用户列表</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>用户名</th>
+					<th>E-Mail</th>
+					<th>最高权限</th>
+					<th>用户状态</th>
+					<th>注册时间</th>
+					<th>管理</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php if ($users): ?>
+					<?php foreach($users as $row): ?>
+						<tr>
+							<td><?php echo $row['user_id']; ?></td>
+							<td><?php echo $row['user_name']; ?></td>
+							<td><?php echo $row['email']; ?></td>
+							<td>
+								<?php if ($row['founder']): ?>
+									<a class="btn btn-success" href="javascript:;" role="button">是</a>
+								<?php else: ?>
+									<a class="btn btn-danger" href="javascript:;" role="button">否</a>
+								<?php endif; ?>
+							</td>
+							<td>
+								<?php if( ! $row['banned']): ?>
+									<a class="btn btn-primary" href="javascript:;" role="button">正常</a>
+								<?php else: ?>
+									<a class="btn btn-info" href="javascript:;" role="button">禁用</a>
+								<?php endif; ?>
+							</td>
+							<td><?php echo $row['fmt_dateline']; ?></td>
+							<td><a href="console/user/edit/<?php echo $row['user_id']; ?>" class="btn btn-link active" role="button">编辑</a></td>
+						</tr>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</tbody>
+		</table>
+	</div>
+	<?php echo $pager; ?>
+</div>

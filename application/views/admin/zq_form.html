@@ -1,0 +1,183 @@
+
+<div class="container">
+	<div class="page-header">
+		<h1><?php if($form_action == 'add'): ?>添加新<?php else: ?>编辑<?php endif; ?>用户</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/zq">最强阵容列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/zq/add">添加新最强阵容</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑最强阵容</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	<form name="zqForm" id="zqForm" action="console/zq/<?php echo $form_action; ?>" method="post" class="form-horizontal" autocomplete="off" enctype="multipart/form-data">
+		
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">阵容名称</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="name" name="name" placeholder="请输入阵容名称" value="" />
+				<?php else: ?>
+					<input type="hidden" value="<?php echo $zq['id'];?>" name="id"/>
+					<p class="form-control-static">
+					<input type="text" class="form-control" id="name" name="name" placeholder="请输入阵容名称" value="<?php echo $zq['name']; ?>"/></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group" id="hero">
+			<?php if($form_action == 'add'): ?>
+			<label for="name" class="col-sm-2 control-label">阵容组合</label>
+			<div class="col-sm-4" id="goods">
+				<?php for($i=0;$i<6;$i++){?>
+				<div class="add" style="min-width:55px;">
+						<span></span>
+				</div>
+				<?php } ?>
+			</div>
+			<?php else: ?>
+			<label for="name" class="col-sm-2 control-label">阵容组合</label>
+			<div class="col-sm-4"  id="goods">
+				<?php  
+					$zq['hero_id'] = explode(',',$zq['hero_id']);
+					$count = count($zq['hero_id']);
+					if($count<5)
+					{
+					foreach($zq['hero_id'] as $k=>$v)
+					{
+				?>
+				<a><em>X</em><img src="/upload/hero_img/<?php echo $v;?>.jpg" style="height:55px;width:55px;"/>&nbsp;</a>
+				<input type="hidden" value="<?php echo $v;?>" name="hero_id[]"/>
+				<?php }
+					for($i=0;$i<6-$count;$i++)
+					{
+						echo '<div class="add" style="min-width:55px;"><span></span></div>';
+					}
+				}?>
+			</div>
+			<?php endif; ?>
+			<div id="alert_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+
+			<div class="form-group">
+				<label for="advantage" class="col-sm-2 control-label">阵容优点</label>
+				<div class="col-sm-4">
+					<?php if($form_action == 'add'): ?>
+						<textarea type="text" class="form-control" id="advantage" name="advantage" placeholder="请输入阵容优点"></textarea>
+					<?php else: ?>
+						<p class="form-control-static"><textarea type="text" class="form-control" id="advantage" name="advantage" placeholder="请输入阵容优点"><?php echo $zq['advantage'];?></textarea></p>
+					<?php endif; ?>
+				</div>
+				<div id="alert_advantage" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+			</div>
+		
+		
+				<div class="form-group">
+				<label for="disadvantage" class="col-sm-2 control-label">阵容缺点</label>
+				<div class="col-sm-4">
+					<?php if($form_action == 'add'): ?>
+						<textarea type="text" class="form-control" id="disadvantage" name="disadvantage" placeholder="请输入阵容缺点"></textarea>
+					<?php else: ?>
+						<p class="form-control-static"><textarea type="text" class="form-control" id="disadvantage" name="disadvantage" placeholder="请输入阵容缺点"><?php echo $zq['advantage'];?></textarea></p>
+					<?php endif; ?>
+				</div>
+				<div id="alert_disadvantage" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label for="create_time" class="col-sm-2 control-label">排序时间</label>
+				<div class="col-sm-4">
+					<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="create_time" name="create_time" placeholder="请输入阵容缺点"/>
+					<?php else: ?>
+						<p class="form-control-static"><input type="text" class="form-control" id="create_time" name="create_time" placeholder="请输入阵容缺点" value="<?php echo $zq['create_time'];?>"/></p>
+					<?php endif; ?>
+				</div>
+				<div id="alert_create_time" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="url" class="col-sm-2 control-label">我要说链接</label>
+				<div class="col-sm-4">
+					<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="url" name="url" placeholder="请输入我要说链接"/>
+					<?php else: ?>
+						<p class="form-control-static"><input type="text" class="form-control" id="url" name="url" placeholder="请输入我要说链接" value="<?php echo $zq['url'];?>"/></p>
+					<?php endif; ?>
+				</div>
+				<div id="alert_url" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+			</div>
+		
+		
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">提交</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="fc" style="display:none; min-width:180px; z-index:9999; background:#fff; position:absolute;">
+	<input type="text" value="" name="name" style="min-width:180px; border:1px solid #cdcdcd; padding-right:5px;" class="armor_search" />
+	<div style="border:1px solid #cdcdcd; border-top:0; min-height:100px; padding-bottom:8px;" id="item" class="item">
+	</div>
+</div>
+<script type="text/javascript">
+var be_choiced_id;
+		function return_id(be_choiced_id){			
+			var $html='<a><em>X</em><img src="/upload/hero_img/'+be_choiced_id+'.jpg" style="height:55px;width:55px;">&nbsp;<input type="hidden" value="'+be_choiced_id+'" name="hero_id[]"/></a>';
+			$('#goods .beclicked').parent().after($html);
+			$('#goods .beclicked').parent().remove();
+			$(".fc input").val("");
+			$(".fc").hide();
+		};
+	$(function(){
+		$(".col-sm-4").children().eq(0).css("margin-top","0 !important");
+		$(".add,.col-sm-4").delegate('span','click',function(){
+			var layer = $('.fc');
+			 var offset = $(this).offset();
+			 var top = offset.top+35;
+			 var left = offset.left+55;
+			 $(".add,.col-sm-4 span").removeClass("beclicked");
+			 $(this).addClass("beclicked");
+			 layer.css({'left':left,'top':top});
+			 layer.show();
+			 $(".fc input").focus();					
+		});
+		$(".fc").blur(function(){
+			//$(".fc").hide();
+		});
+		$(".fc").mouseleave(function(){
+			$(".fc input").val("");
+			$(".fc").hide();
+		});
+		$(".col-sm-4").delegate('a em','click',function(){
+			var addHtml = '<div class="add" style="min-width:55px;"><span></span></div>';
+			$(this).parent().after(addHtml);
+			$(this).parent().remove();
+		});
+		
+		$(".armor_search").autocomplete('http://dotachuanqi.com/console/hero/get_hero', {
+		multiple: true,
+		dataType: "json",
+		parse: function(data) {
+			return $.map(data, function(row) {
+				return {
+					data: row,
+					value: row.id,
+					result: row.hero_name
+				}
+			});
+		},
+		formatItem: function(row) {
+			return  "<p class="+row.id+"> " +row.hero_name+ "</p>";
+		}
+		
+	})
+	})
+</script>

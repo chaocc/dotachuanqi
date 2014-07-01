@@ -1,0 +1,99 @@
+<div class="container">
+	<div class="page-header">
+		<h1 style="display:none;">技能列表</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/skill">技能列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/skill/add">添加新技能</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/skill/deleted">已删除技能列表</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑技能</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	
+
+	
+	
+	<div class="panel panel-primary">
+		<div class="panel-heading">技能列表</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>技能名称</th>
+					<th>技能图片</th>
+					<th>技能描述</th>
+					<th style="width:180px;">管理</th>
+				</tr>
+			</thead>
+			<tbody id="exccard">
+					<?php if ($skill): ?>
+				<?php foreach($skill as $v): ?>
+				<tr>
+					<td class="skill_id"><?php echo $v['id'];?></td>
+					<td><?php echo $v['skill_name'];?></td>
+					<td><img src="/upload/skill_img/<?php echo $v['skill_img'];?>"/></td>
+					<td><?php echo $v['description'];?></td>
+					<td>
+						<?php if (isset($subnav_active) && $subnav_active == 'deleted'){?>
+								<a href="javascript:;" class="btn btn-danger recover" role="button" style="margin-left:15px;">恢复</a>
+						<?php }else{ ?>
+							<a href="/console/skill/edit/<?php echo $v['id'];?>" class="btn btn-danger update" role="button">编辑</a>
+							<a href="javascript:;" class="btn btn-danger delete" role="button" style="margin-left:15px;">删除</a>
+						<?php } ?>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+				<?php endif;?>
+			</tbody>
+		</table>
+	</div>
+
+		<?php echo $pager; ?>
+
+</div>
+
+<script>
+$(function(){
+	bindclick();
+});
+	function bindclick(){
+	
+		$('a.delete').unbind();
+		$('a.delete').click(function(){
+			console.log('aaa');
+		if(confirm("确定要清空数据吗？"))
+		{
+				var skill_id = $(this).parent().parent().find('.skill_id').text();
+				var postdata = {
+						id: skill_id,
+				};
+				$.post('console/skill/remove',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		}
+		});
+				$('a.recover').unbind();
+		$('a.recover').click(function(){
+
+				var skill_id = $(this).parent().parent().find('.skill_id').text();
+				var postdata = {
+						id: skill_id,
+				};
+				$.post('console/skill/recover',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		});
+	}
+
+</script>

@@ -1,0 +1,94 @@
+﻿.nav_narrow,.con_nav{display:none}
+
+.wrap{width:100%;}
+html,body,.bg{background-image:none;background-color:transparent;}
+body{background-color:#f7f7f5;font-family:Microsoft yahei;-webkit-text-size-adjust:100%;}
+.font14,.font14 *{font-size:16px;}
+.mybutton{font-size:1em;}
+
+#gridData{width:100%;display:block;}
+#gridone,#gridtwo,#gridthree,.nav .navbox{display:none;}
+
+.nav{padding:0;}
+.nav .imgbox img:first-child{display:none;}
+.nav .imgbox{position:static;font-size:0;}
+.nav .imgbox img{max-width:100%;}
+.nav .phonenav{display:block;}
+
+.con_nav{float:none;position:absolute;width:100%;background:url(http://img.laohu.com/ls/images/mainbg.jpg);border-radius:3px;padding:10px 0;box-shadow:0 0 5px rgba(0,0,0,0.4);}
+.con_nav .phonenavtop{display:block;padding:10px;}
+.con_nav .phonenavtop li{display:inline-block;padding:8px 12px;color:#888;background-color:#e8e8e8;border-radius:5px;margin:0 8px 10px 0;}
+.con_nav .phonenavtop li a{color:#888;font-size:1.2em;text-decoration:none;display:block;width:100%;height:100%;}
+.con_nav h2{font-size:0.8em;padding:0 10px;height:auto;padding-bottom:10px;background-position:0 10px; text-align:left; text-indent:72px;}
+.con_nav .width128,.con_nav .width64{padding:0 10px;}
+.con_nav .width128 li,.con_nav .width64 li{display:inline-block;padding-right:10px;float:none;width:auto;line-height:24px;font-size:1em;margin-bottom:10px;}
+.con_nav .down .imgbox{display:none;}
+.con_nav .down .button{padding:0 10px;}
+.con_nav .down .button a{margin:0 0 10px 0;}
+
+.con_area{float:none;width:auto;border:0 none;padding:0 10px 20px;}
+
+.area{width:auto;float:none;padding:0 10px;}
+.area .title{height:auto;padding:12px 0;}
+.area .title h2{font-size:1.2em;}
+.area .title span{font-size:1em;}
+.area .title span.alarm{font-size:12px;}
+.area .con h3,.area .con h3 a{font-size:1.1em;}
+.area .con h4{font-size:1em;}
+.area .newz p{font-size:1em;line-height:34px;}
+.area ul li{font-size:1em;line-height:34px;}
+.area ul.list5 li,.area ul.list4 li,.area ul.list3 li,.area ul.list2 li,.area ul.listauto li{float:none;width:auto;height:auto;display:inline-block;overflow:visible;padding-right:10px;}
+.area ul.listimg1 li{float:none;width:auto;height:auto;display:inline-block;padding-right:10px;line-height:auto;}
+.area ul.listimg2 li{width:90px;}
+.area ul.listimg2 li span{margin-left:14px;}
+.area .brief h2{font-size:1.1em;}
+.area .brief p{font-size:1em;}
+.area .brief .imgbox{padding:2px;width:auto;height:auto;font-size:0;text-align:center;}
+.area .brief .imgbox img{max-width:100%;}
+.area .button .mybutton{max-width:100%;}
+.area .caledar{margin:0 -10px;}
+.area .caledar .week{padding:10px 0 0 10px;}
+.area .caledar .week span{font-size:1em;margin-right:5px;}
+.area .caledar th,.area .caledar td{font-size:1em;}
+
+.area .caledar .active{position:relative;}
+.area .caledar .active span{float:none;font-size:1em;position:absolute;left:0;top:0;}
+.area .caledar .active p{float:none;width:auto;font-size:1em;padding-left:102px;line-height:24px;background:url(http://img.laohu.com/ls/images/sanj.jpg) no-repeat 0 20px;}
+.area .caledar .active p a{padding-right:10px;}
+
+.datasear .searbox{ width:90%; margin-bottom:20px; padding-bottom:20px;padding: 20px 10px 20px 20px;}
+.datasear .newslist{ width:90%; float:left;}
+.pagenum .table .tdleft{ width:100%;}
+.pagenum .table .tdright{ width:100%;}
+.items li{ margin:20px 0 0 20px;}
+.items li img{}
+.items li p{ width:98%;}
+.footer .friendLink{ width:100%;}
+.footer .friendLink .list{ width:100%;}
+
+
+
+
+.footer_bottom p{font-size:1em;padding:0 10px;}
+.footer_bottom .footerNav a{font-size:1.1em;}
+
+.table .th{ display:none;}
+.table .tdleft{ width:100%;}
+.table .tdright{ width:100%;}
+/*卡组*/
+.kz_topArea{ width:98%; padding-bottom:20px;}
+.kz_topArea .leftArea{ width:100%;}
+.kz_topArea .kz_info{ padding:145px 20px 10px 0px;}
+.zh_right{width:90%; padding-top:20px;}
+.clearfix .zhlj{ width:90%;}
+/*详情*/
+.xq_top .fontright{ width:100%;}
+/*职业*/
+.xq_top .hero{ width:100%;}
+.xq_top .hero .fl{ float:none;}
+.xq_top .hero .fontright{ float:none; width:100%;}
+.herobk{ position:relative; margin:-20px 20px 60px; width:100%;}
+.zy .kz_bs{ width:100%;}
+.zy .kz_bs li{ width:100%;}
+.kz_bs{ width:100%;}
+.kz_bs li{ width:100%;}

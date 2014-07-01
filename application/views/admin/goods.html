@@ -1,0 +1,103 @@
+<div class="container">
+	<div class="page-header">
+		<h1 style="display:none;">物品列表</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/goods">物品列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/goods/add">添加新物品</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/goods/deleted">已删除物品列表</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑物品</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	
+
+	
+	
+	<div class="panel panel-primary">
+		<div class="panel-heading">物品列表</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>物品名称</th>
+					<th>物品图片</th>
+					<th>物品颜色</th>
+					<th>物品描述</th>
+					<th>物品效果</th>
+					<th style="width:180px;">管理</th>
+				</tr>
+			</thead>
+			<tbody id="exccard">
+					<?php if ($goods): ?>
+				<?php foreach($goods as $v): ?>
+				<tr>
+					<td class="goods_id"><?php echo $v['id'];?></td>
+					<td><?php echo $v['goods_name'];?></td>
+					<td><img src="<?php echo $v['goods_img'];?>"/></td>
+					<td><?php echo $v['color'];?> </td>
+					<td><?php echo $v['description'];?></td>
+					<td><?php echo $v['xiaoguo'];?></td>
+					<td>
+						<?php if (isset($subnav_active) && $subnav_active == 'deleted'){?>
+								<a href="javascript:;" class="btn btn-danger recover" role="button" style="margin-left:15px;">恢复</a>
+						<?php }else{ ?>
+							<a href="/console/goods/edit/<?php echo $v['id'];?>" class="btn btn-danger update" role="button">编辑</a>
+							<a href="javascript:;" class="btn btn-danger delete" role="button" style="margin-left:15px;">删除</a>
+						<?php } ?>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+				<?php endif;?>
+			</tbody>
+		</table>
+	</div>
+
+		<?php echo $pager; ?>
+
+</div>
+
+<script>
+$(function(){
+	bindclick();
+});
+	function bindclick(){
+	
+		$('a.delete').unbind();
+		$('a.delete').click(function(){
+			console.log('aaa');
+		if(confirm("确定要清空数据吗？"))
+		{
+				var goods_id = $(this).parent().parent().find('.goods_id').text();
+				var postdata = {
+						id: goods_id,
+				};
+				$.post('console/goods/remove',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		}
+		});
+				$('a.recover').unbind();
+		$('a.recover').click(function(){
+
+				var goods_id = $(this).parent().parent().find('.goods_id').text();
+				var postdata = {
+						id: goods_id,
+				};
+				$.post('console/goods/recover',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		});
+	}
+
+</script>

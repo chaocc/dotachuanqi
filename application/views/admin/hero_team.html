@@ -1,0 +1,92 @@
+<div class="container">
+	<div class="page-header">
+		<h1 style="display:none;">最强阵容列表</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/hero_team">最强阵容列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/hero_team/add">添加新最强阵容</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/hero_team/deleted">已删除最强阵容</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑最强阵容</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">最强阵容列表</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>英雄ID</th>
+					<th>最强阵容名称</th>
+					<th>类型</th>
+					<th>入库时间</th>
+					<th style="width:180px;">管理</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php if ($hero_team): ?>
+					<?php foreach($hero_team as $row): ?>
+						<tr>
+							<td class="hero_team_id"><?php echo $row['id']; ?></td>
+							<td><?php echo $row['name']; ?></td>
+							<td><?php echo $row['type']; ?></td>
+							<td><?php echo $row['create_time']; ?></td>
+							<td>
+							<?php if (isset($subnav_active) && $subnav_active == 'deleted'){?>
+									<a href="javascript:;" class="btn btn-danger recover" role="button" style="margin-left:15px;">恢复</a>
+							<?php }else{ ?>
+								<a href="/console/hero_team/edit/<?php echo $row['id'];?>" class="btn btn-danger update" role="button">编辑</a>
+								<a href="javascript:;" class="btn btn-danger delete" role="button" style="margin-left:15px;">删除</a>
+							<?php } ?>
+						</td>
+						</tr>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</tbody>
+		</table>
+	</div>
+	<?php echo $pager; ?>
+</div>
+<script>
+
+$(function(){
+	bindclick();
+});
+	function bindclick(){
+	
+		$('a.delete').unbind();
+		$('a.delete').click(function(){
+			console.log('aaa');
+		if(confirm("确定要清空数据吗？"))
+		{
+				var hero_team_id = $(this).parent().parent().find('.hero_team_id').text();
+				var postdata = {
+						id: hero_team_id,
+				};
+				$.post('console/hero_team/remove',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		}
+		});
+				$('a.recover').unbind();
+		$('a.recover').click(function(){
+
+				var hero_team_id = $(this).parent().parent().find('.hero_team_id').text();
+				var postdata = {
+						id: hero_team_id,
+				};
+				$.post('console/hero_team/recover',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		});
+	}
+</script>

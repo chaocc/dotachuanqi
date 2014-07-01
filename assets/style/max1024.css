@@ -1,0 +1,29 @@
+﻿.nav_narrow,.con_nav{display:none;}
+.wrap{width:660px;}
+.bg{background:url(http://img.laohu.com/ls/images/headimg1024.jpg) no-repeat center top;}
+#gridone{margin-left:0;}
+
+.nav .menu{display:block;}
+.con_nav{float:none;position:absolute;right:10px;top:-40px;width:270px;background:url(http://img.laohu.com/ls/images/mainbg.jpg);border:1px solid #cfcfcf;border-radius:3px;padding-top:0;}
+.con_nav .down .imgbox{float:left;width:116px;}
+.con_nav .down .imgbox img{margin-left:0;}
+.con_nav .down .imgbox h6{display:block;}
+.con_nav .down .button{float:left;width:112px;}
+.con_nav .down .button a{margin-top:0;margin-bottom:10px;}
+.con_nav .triangle{display:block;}
+/*首页*/
+.con_area{border:0 none;width:640px;}
+
+.newslist{ width:580px; padding-left:22px; margin-top:20px;}
+
+.items{ padding:0 10px 0 70px;}
+.table .th{}
+.table .tdleft{ width:100%;}
+.table .tdright{ width:100%;}
+/*卡组*/
+.kz_topArea{ width:618px; padding-bottom:20px;}
+.zh_right{width:90%; padding-top:20px;}
+.clearfix .zhlj{ width:90%;}
+/*职业*/
+.xq_top .hero .fontright{ float:left;}
+.zy .c_card{ width:100%;}

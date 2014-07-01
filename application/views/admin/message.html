@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="panel panel-<?php echo $type; ?>">
+		<div class="panel-heading"><h3 class="panel-title">信息提示</h3></div>
+		<div class="panel-body"><?php echo $message;?></div>
+		<div class="panel-footer">
+			<div class="list-group msg-box">
+				<?php if ($jump_url): ?>
+					<?php if($auto_back == 1): ?>
+					<span class="glyphicon glyphicon-arrow-right"></span> <a href="javascript:history.back();" title="返回上一页" class="list-group-item active">返回上一页</a>
+					<?php endif; ?>
+					<?php foreach ($jump_url as $uindex => $url): ?>
+					<span class="glyphicon glyphicon-arrow-right"></span> 
+					<a href="<?php echo $url['href']; ?>" title="<?php echo $url['text'];?>" class="list-group-item<?php if($uindex == 0 && $auto_back != 1): ?> active<?php endif; ?>"><?php echo $url['text']; ?></a>
+					<?php endforeach; ?>
+					<?php if($auto_back==2): ?>
+					<span class="glyphicon glyphicon-arrow-right"></span> <a href="javascript:history.back();" title="返回上一页" class="list-group-item">返回上一页</a>
+					<?php endif; ?>
+				<?php else: ?>
+					<span class="glyphicon glyphicon-arrow-right"></span> <a href="javascript:history.back();" title="返回上一页" class="list-group-item active">返回上一页</a>
+					<span class="glyphicon glyphicon-arrow-right"></span> <a href="" title="首页" class="list-group-item">首页</a>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?php if( ! $halt): ?>
+<script type="text/javascript">
+	<?php if ( ! $jump_url OR $auto_back == 1): ?>
+		<?php if ($timeout > 0): ?>
+			setTimeout("history.back();", <?php echo $timeout*1000; ?>);
+		<?php else: ?>
+			history.back();
+		<?php endif; ?>
+	<?php else: ?>
+		<?php if ($timeout): ?>
+			setTimeout("window.location.href ='<?php echo $jump_url['0']['href']; ?>';", <?php echo $timeout*1000;?>);
+		<?php else: ?>
+			window.location.href ="<?php echo $jump_url['0']['href']; ?>";
+		<?php endif; ?>
+	<?php endif; ?>
+</script>
+<?php endif; ?>

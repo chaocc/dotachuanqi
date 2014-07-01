@@ -1,0 +1,106 @@
+<div class="container">
+	<div class="page-header">
+		<h1><?php if($form_action == 'add'): ?>添加新<?php else: ?>编辑<?php endif; ?>最强英雄</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/hero_strong">最强英雄列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/hero_strong/add">添加新最强英雄</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/hero_strong/deleted">已删除最强英雄</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑最强英雄</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	<form name="heroStongFrom" id="heroStongFrom" action="console/hero_strong/<?php echo $form_action; ?>" method="post" class="form-horizontal" autocomplete="off">
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">名称</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="name" name="name" placeholder="请输入最强阵容名称" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="name" name="name" placeholder="请输入最强阵容名称" value="<?php echo $hero_strong['name'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="hero_name" class="col-sm-2 control-label">英雄名称</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="hero_name" name="hero_name" placeholder="请输入英雄名称" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="hero_name" name="hero_name" placeholder="请输入英雄名称" value="<?php echo $hero_name;?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_hero_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="hero_img" class="col-sm-2 control-label">英雄图片</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="hero_img" name="hero_img" placeholder="请输入英英雄图片" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="hero_img" name="hero_img" placeholder="请输入英英雄图片" value="<?php echo $hero_strong['hero_img'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_hero_img" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="style" class="col-sm-2 control-label">样式选择</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="style" name="style" placeholder="请输入样式选择" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="style" name="style" placeholder="请输入样式选择" value="<?php echo $hero_strong['style'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_hero_img" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		
+			<div class="form-group">
+			<label for="create_time" class="col-sm-2 control-label">排序时间</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="create_time" name="create_time" placeholder="请输入排序时间" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="create_time" name="create_time" placeholder="请输入排序时间" value="<?php echo $hero_strong['create_time'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_hero_img" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="advantage" class="col-sm-2 control-label">英雄优点</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<textarea type="text" class="form-control" id="advantage" name="advantage" placeholder="英雄优点"></textarea>
+				<?php else: ?>
+					<textarea type="text" class="form-control" id="advantage" name="advantage" placeholder="英雄优点"><?php echo $hero_strong['advantage'];?></textarea>
+				<?php endif; ?>
+			</div>
+			<div id="alert_advantage" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		<div class="form-group">
+			<label for="disadvantage" class="col-sm-2 control-label">英雄缺点</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<textarea type="text" class="form-control" id="disadvantage" name="disadvantage" placeholder="英雄缺点"></textarea>
+				<?php else:?>
+					<textarea type="text" class="form-control" id="disadvantage" name="disadvantage" placeholder="英雄缺点"><?php echo $hero_strong['disadvantage'];?></textarea>
+				<?php endif; ?>
+			</div>
+			<div id="alert_disadvantage" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">提交</button>
+			</div>
+		</div>
+	</form>
+</div>

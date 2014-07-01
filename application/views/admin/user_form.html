@@ -1,0 +1,182 @@
+<div class="container">
+	<div class="page-header">
+		<h1><?php if($form_action == 'add'): ?>添加新<?php else: ?>编辑<?php endif; ?>用户</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/user">用户列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/user/add">添加新用户</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑用户</a></li>
+			<?php endif;  ?>
+			<li><a href="console/login/change">修改密码</a></li>
+		</ul>
+	</div>
+	<form name="userForm" id="userForm" action="console/user/<?php echo $form_action; ?>" method="post" class="form-horizontal" autocomplete="off">
+		<div class="form-group">
+			<label for="username" class="col-sm-2 control-label">用户名</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" value="<?php if(isset($member['user_name'])): ?><?php echo $member['user_name']; ?><?php else: ?><?php endif; ?>" />
+				<?php else: ?>
+					<p class="form-control-static"><?php echo $member['user_name']; ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_username" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="email" class="col-sm-2 control-label">E-mail</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="email" name="email" placeholder="请输入用户E-mail" value="<?php if(isset($member['email'])): ?><?php echo $member['email']; ?><?php else: ?><?php endif; ?>" />
+				<?php else: ?>
+					<p class="form-control-static"><?php echo $member['email']; ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_email" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="password" class="col-sm-2 control-label">用户密码</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="password" name="password" placeholder="请输入用户密码(至少6位)" value="" />
+			</div>
+			<div id="alert_password" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-2 control-label">最高权限</label>
+			<div class="col-sm-4">
+				<label class="radio-inline" for="founderEnable0">
+					<input type="radio" id="founderEnable0" name="founderEnable" value="1"<?php if(isset($member['founder']) && $member['founder'] == 1): ?> checked="checked"<?php endif; ?> /> 是
+				</label>
+				<label class="radio-inline" for="founderEnable1">
+					<input type="radio" id="founderEnable1" name="founderEnable" value="0"<?php if(isset($member['founder']) && $member['founder'] == 0): ?> checked="checked"<?php endif; ?> /> 否
+				</label>
+			</div>
+			<div id="alert_founder" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-2 control-label">用户状态</label>
+			<div class="col-sm-4">
+				<label class="radio-inline" for="bannedLimit0">
+					<input type="radio" id="bannedLimit0" name="bannedLimit" value="0"<?php if(isset($member['banned']) && $member['banned'] == 0): ?> checked="checked"<?php endif; ?> /> 正常
+				</label>
+				<label class="radio-inline" for="bannedLimit1">
+					<input type="radio" id="bannedLimit1" name="bannedLimit" value="1"<?php if(isset($member['banned']) && $member['banned'] == 1): ?> checked="checked"<?php endif; ?> /> 禁用
+				</label>
+			</div>
+			<div id="alert_banned" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="user_id" id="user_id" value="<?php echo $member['user_id'] ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">提交</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+$(function(){
+	function check_user(element)
+	{
+		var flag = true;
+		
+		// username
+		if ($("input[name='username']").size()) {
+			var username = $.trim($('#username').val());
+			if ( ! username && ( ! element || element == 'username')) {
+				$('#alert_username').text('用户名不能为空');
+				$('#alert_username').css('display', 'block');
+				$('#username').parent().parent().addClass('has-error');
+				flag = false;
+			}
+		}
+		
+		// email
+		if ($("input[name='email']").size()) {
+			var email = $.trim($('#email').val());
+			if ( ! email && ( ! element || element == 'email')) {
+				$('#alert_email').text('E-mail 不能为空');
+				$('#alert_email').css('display', 'block');
+				$('#email').parent().parent().addClass('has-error');
+				flag = false;
+			}
+		}
+		
+		// password
+		var password = $.trim($('#password').val());
+		if ($('#user_id').val() === 0 && ( ! password || password.length < 6 ) && ( ! element || element == 'password')) {
+			$('#alert_password').text('密码至少为6位');
+			$('#alert_password').css('display', 'block');
+			$('#password').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		// founder
+		var founder_chk = $("input[name='founderEnable']:checked").size();
+		if ( ! founder_chk && ( ! element || element == 'founder')) {
+			$('#alert_founder').text('请选择最高权限设置');
+			$('#alert_founder').css('display', 'block');
+			$("input[name='founderEnable']").parent().parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		// banned
+		var bannde_chk = $("input[name='bannedLimit']:checked").size();
+		if ( ! bannde_chk && ( ! element || element == 'banned')) {
+			$('#alert_banned').text('请选择用户状态设置');
+			$('#alert_banned').css('display', 'block');
+			$("input[name='bannedLimit']").parent().parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		return flag;
+	}
+	$('#userForm').submit(function(){
+		return check_user();
+	});
+	if ($("input[name='username']").size()) {
+		$('#username').focus(function(){
+			$('#username').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_username').css('display', 'none');
+		})
+		.blur(function(){
+			check_user('username');
+		});
+	}
+	if ($("input[name='email']").size()) {
+		$('#email').focus(function(){
+			$('#email').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_email').css('display', 'none');
+		})
+		.blur(function(){
+			check_user('email');
+		});
+	}
+	$('#password').focus(function(){
+		$('#password').parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_password').css('display', 'none');
+	})
+	.blur(function(){
+		check_user('password');
+	});
+	$("input[name='founderEnable']").focus(function(){
+		$("input[name='founderEnable']").parent().parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_founder').css('display', 'none');
+	})
+	.blur(function(){
+		check_user('founder');
+	});
+	$("input[name='bannedLimit']").focus(function(){
+		$("input[name='bannedLimit']").parent().parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_banned').css('display', 'none');
+	})
+	.blur(function(){
+		check_user('banned');
+	});
+})
+</script>

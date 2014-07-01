@@ -1,0 +1,284 @@
+﻿*{margin:0;padding:0;list-style:none;}
+img{border:0 none;}
+.nav_narrow{position:absolute !important;_top:0 !important;}
+
+html{background:url(http://img.laohu.com/ls/images/bodybg.jpg);}
+body{background:url(http://img.laohu.com/ls/images/topbg.jpg) repeat-x;font-family:"宋体";}
+a{ text-decoration:none;}
+em{ font-style:normal;}
+
+.wrap{width:1200px;margin:0 auto;}
+.bg{background:url(http://img.laohu.com/ls/images/headimg.jpg) no-repeat center top;}
+.clear{clear:both;overflow:hidden;height:0;width:100%;font-size:0;visibility:hidden;}
+.clearfix:before,.clearfix:after{ display:table; content:"";}
+.clearfix:after{ clear:both;}
+.clearfix{ room:1;}
+.fl{ float:left;}
+.fr{ float:right;}
+
+.dotline{height:10px;overflow:hidden;border-bottom:1px dashed #e0e0e0;display:block;width:100%;clear:both;margin-bottom:10px;}
+.mybutton{display:inline-block;width:90%;height:34px;background:url(http://img.laohu.com/ls/images/mybuttonbg.jpg) repeat-x;border:1px solid #d6d5d5;box-shadow:1px 1px 0 rgba(0,0,0,0.05);border-radius:3px;font-size:12px;color:#696969;text-decoration:none;cursor:pointer;line-height:34px;text-align:center;}
+.font14,.font14 *{font-size:14px;}
+.yellow{color:#ff6900 !important;font-style:normal;}
+.blue{color:#018bb2 !important;font-style:normal;}
+.green{color:#009a80 !important;font-style:normal;}
+
+.nav{padding-top:306px;position:relative;}
+.nav .imgbox{position:absolute;left:0;top:0;width:100%;overflow:hidden;}
+.nav .navbox{position:absolute;left:0;top:206px;background:url(http://img.laohu.com/ls/images/navbg.png) no-repeat left top;width:100%;height:100px;overflow:hidden;background-size:100% 100px;}
+.nav .navbox ul{height:42px;overflow:hidden;padding:16px 45px 0 16px;}
+.nav .navbox ul li{float:left;font-family:Microsoft yahei;font-size:18px;color:#fff;padding:0 16px;height:32px;vertical-align:middle;line-height:30px;text-align:center;margin-bottom:10px;margin-right:6px;*white-space:nowrap;}
+.nav .navbox ul li.now{background-color:#f60;border-radius:16px;font-weight:bold;}
+.nav .navbox ul li.now:hover{background-color:#f60;}
+.nav .navbox ul li a{color:#fff;text-decoration:none;}
+.nav .navbox ul li:hover{background-color:#000;border-radius:16px;}
+.nav .navbox p{height:42px;line-height:40px;padding-left:28px;}
+.nav .navbox p span{font-size:14px;color:#fff8e0;padding-right:26px;}
+.nav .navbox p a{color:#fee07d;font-size:12px;text-decoration:none;margin-right:20px; }
+.nav .menu{background:url(http://img.laohu.com/ls/images/menu.png) no-repeat;width:35px;height:24px;_background-image:url(http://img.laohu.com/ls/images/menu.gif);position:absolute;right:20px;bottom:55px;cursor:pointer;display:none;}
+.nav .phonenav{background:url(http://img.laohu.com/ls/images/navbg.png);height:50px;width:100%;border-top-left-radius:3px;border-top-right-radius:3px;position:absolute;left:0;bottom:0;display:none;}
+.nav .phonenav .home{background:url(http://img.laohu.com/ls/images/phonehome.png) no-repeat;width:24px;height:22px;background-size:auto 100%;float:left;margin:12px 0 0 10px;}
+.nav .phonenav .phonemenu{background:url(http://img.laohu.com/ls/images/phonemenu.png) no-repeat;width:22px;height:14px;background-size:auto 100%;float:right;margin:18px 10px 0 0; cursor:pointer;}
+
+.main{background:url(http://img.laohu.com/ls/images/mainbg.jpg);position:relative;border-bottom-left-radius:5px;border-bottom-right-radius:5px;box-shadow:0 2px 2px rgba(0,0,0,0.2);*zoom:1;}
+.con_nav{float:left;width:200px;padding:20px 0 10px;z-index:10;}
+.con_nav h2{font-size:12px;color:#392817;text-align:center;padding:15px 0;clear:both;height:15px;overflow:hidden;background:url(http://img.laohu.com/ls/images/navline.png) no-repeat center bottom;_background:url(http://img.laohu.com/ls/images/navline.jpg) no-repeat center bottom;margin-right:5px;}
+.con_nav ul{padding:20px 0 10px 20px;}
+.con_nav ul.single li{float: none;width: auto;}
+.con_nav ul li{float:left;width:80px;font-size:12px;line-height:30px;padding-left:10px;}
+.con_nav ul li a{color:#392817;text-decoration:none;}
+.con_nav ul li a:hover{color:#2e71c6;}
+.con_nav .triangle{display:none;background:url(http://img.laohu.com/ls/images/triangle.gif) no-repeat;width:14px;height:6px;position:absolute;right:18px;top:-6px;}
+.con_nav .phonenavtop{display:none;}
+
+.con_area{background:url(http://img.laohu.com/ls/images/areabg.jpg);float:left;width:980px;padding-left:19px;border-left:1px solid #dfbe88; position:relative; overflow:hidden;}
+.connav{color:#b39b79;font-size:12px;background:url(http://img.laohu.com/ls/images/baoshi.png) no-repeat 0 21px; _background:url(http://img.laohu.com/ls/images/baoshi.gif) no-repeat 0 21px;padding-left:20px;line-height:58px; overflow:hidden; position:relative; height:58px; width:100%;}
+.connav a{color:#8b6c3f;text-decoration:none;margin:0 5px;}
+.connav span.share{ padding-right:20px;_padding-top:20px;}
+.connav span.share a{display:inline-block;height:24px;vertical-align:middle;padding-left:30px;line-height:24px;}
+.connav span .add{background:url(http://img.laohu.com/ls/images/add.png) no-repeat;_background:url(http://img.laohu.com/ls/images/add.jpg) no-repeat;}
+.connav span .sina{background:url(http://img.laohu.com/ls/images/sina.png) no-repeat;_background:url(http://img.laohu.com/ls/images/sina.jpg) no-repeat;}
+.connav span .tenet{background:url(http://img.laohu.com/ls/images/tenet.png) no-repeat;_background:url(http://img.laohu.com/ls/images/tenet.jpg) no-repeat;}
+
+.datasear{}
+.datasear .searbox{float:left;width:578px;border:1px solid #c8ad77;border-radius:3px;background-color:rgba(239,231,214,0.3);background-color:#eadab6\9; font:normal 12px/16px "宋体"; color:#8b6c3f; padding:20px 20px 0px 20px; position:relative; overflow:hidden;}
+.datasear .searbox .s1{float:left;width:272px; margin-bottom:20px;}
+.datasear .searbox .s1 .searinput{border:1px solid #cdb283;border-radius:3px;height:36px;width:190px;background:url(http://img.laohu.com/ls/images/search.png) no-repeat #f8f8f8 10px center; padding-left:30px;}
+.datasear .searbox .checkbox{ background:url(http://img.laohu.com/ls/images/checkbg.jpg) no-repeat; display:inline-block; width:16px; height:16px; float:left; margin-right:5px;}
+.datasear .searbox .checked{ background:url(http://img.laohu.com/ls/images/checkbg.jpg) no-repeat right top; display:inline-block; width:16px; height:16px; float:left; margin-right:5px;}
+.datasear .searbox p{ margin-top:5px;}
+.datasear .searbox li{ height:16px; line-height:16px; margin:12px 0 0;}
+.datasear .searbox .selectbg{ width:270px;}
+.datasear .searbox .selectbg .dlt{ float:left; display:none; margin:16px 0 0 6px; width:18px; height:18px; overflow:hidden; text-indent:-999px; font-size:0; line-height:0; background:url(http://img.laohu.com/ls/images/delet.png) no-repeat}
+.datasear .searbox .select{ position:relative; float:left;height:28px; line-height:28px; border:1px solid #cdb283; margin:10px 4px 0 0; /*z-index:2;*/}
+.datasear .searbox .select p{color:#787878; background:#f8f8f8;height:28px; line-height:28px; padding:0; margin:0; text-indent:5px; float:left; width:100%; position:relative;}
+.datasear .searbox .select p em{ background:#ead7ac url(http://img.laohu.com/ls/images/select.gif) no-repeat center; width:26px; height:28px; line-height:26px; border:1px solid #cdb283;cursor:pointer; padding:0; margin:0; display:block; position:absolute; right:-1px; top:-1px;}
+.datasear .searbox .select p.selected{ display:block;}
+.datasear .searbox .select .ps{ display:none; position:absolute; top:28px; left:-1px; border:1px solid #cdb283; border-top:none; z-index:3; width:100%; height:112px; overflow:auto;}
+.datasear .searbox .select .ps p{ border:none; float:none; cursor:pointer; text-indent:15px;}
+.datasear .searbox .select .ps p.strong{ text-indent:5px; font-weight:bold; color:#8B6C3F; cursor:auto;}
+.datasear .searbox .select .ps p.symbol{ text-indent:5px;}
+.datasear .searbox .select .input{ width:55px; height:28px; background:#f8f8f8; border:none; color:#787878; line-height:28px; padding-left:5px;}
+.datasear .searbox .search{ margin-top:60px;}
+.datasear .searbox .search input{cursor:pointer; border:none; text-align:center;  height:36px;}
+.datasear .searbox .search .bt_search{ background:url(http://img.laohu.com/ls/images/but_search.png) no-repeat; width:130px;font:bold 14px/36px "宋体"; color:#f9e7fd; }
+.datasear .searbox .search .bt_search:hover{ background-position:0 -44px}
+.datasear .searbox .search .bt_reset{ background:url(http://img.laohu.com/ls/images/but_reset.png) no-repeat; width:82px; font:normal 12px/36px "宋体";color:#f8f3f0;}
+.datasear .searbox .s2{ float:left; /*height:236px;*/ width:305px;}
+.datasear .searbox .s2_1{ float:left; width:70px;}
+.datasear .searbox .s2_2{ float:left; width:235px; position:relative; padding-bottom:10px;}
+.datasear .searbox ul{ float:left; overflow:hidden; position:relative;}
+.datasear .searbox .s2_2 li{ width:76px; float:left;}
+.datasear .searbox h3{ font:bold 14px/20px "宋体"; color:#4c2121; margin-bottom:5px;}
+.color_a{ color:#787878 !important}
+.color_b{ color:#09c82d !important}
+.color_c{ color:#268cff !important}
+.color_d{ color:#b93bfb !important}
+.color_e{ color:#ff6900 !important}
+
+.newslist{border:1px solid #c8ad77;border-radius:1px;background-color:rgba(239,231,214,0.3);background-color:#eadab6\9; padding:15px; position:relative; overflow:hidden;width:290px; float:right; margin-right:20px;_margin-right:10px;}
+.newslist h2{font-size:14px;color:#392817;background:url(http://img.laohu.com/ls/images/news_title.png) no-repeat 0 10px; text-indent:30px; height:45px; line-height:45px; border-bottom:1px solid #c7b891;}
+.newslist h2 a.more{color:#b39b79; font:normal 12px/45px "宋体"; float:right; margin-right:5px;*margin-top:-45px;}
+.newslist li{ background:url(http://img.laohu.com/ls/images/news_ico.png) no-repeat 0 6px; padding-left:20px; font-size:12px; color:#8b6c3f; line-height:25px;}
+.newslist li a{ text-decoration:none; color:#8b6c3f;}
+.newslist li a:hover{color:#ff6900;}
+.newslist li span{ font-weight:bold;}
+
+.items{ width:100%; margin-top:20px;}
+.items li{ float:left; width:227px; height:134px; position:relative; margin-right:18px;_margin-right:9px; margin-top:20px;}
+.items li img{ display:block; width:100%; height:100%;}
+.items li p{background:rgba(38,32,27,0.85);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#d826201b,endColorstr=#d826201b);zoom:1; color:#fff0b1; font:bold 14px/30px "宋体"; text-align:center; position:absolute; left:2px; width:222px; bottom:2px;}
+:root .items li p{filter:none\9;}/*for IE9*/
+
+.line{ width:100%; background:url(http://img.laohu.com/ls/images/line.jpg) no-repeat; height:19px;}
+.line span{ width:50%; height:19px; float:right;background:url(http://img.laohu.com/ls/images/line.jpg) no-repeat right top;}
+.pagenum{ position:relative; margin-top:30px;padding-right:20px; padding-bottom:20px;}
+.pagenum .pagecon{ position:relative; overflow:hidden; height:25px; line-height:25px; color:#8b6c3f; font-size:12px; margin:10px 0 20px;}
+.total span{ color:#ff6900; font-size:18px; font-family:Arial; font-weight:bolder; padding:0 5px;}
+.pagenum .pagecon .page{ float:right;position:relative; margin-top:-25px;}
+.pagenum .pagecon .page em{ font-style:normal; padding:0 5px;}
+.pagenum .pagecon .page a{ color:#b39b79; margin:0 3px;}
+.pagenum .pagecon .page a:hover{color:#2e71c6; text-decoration:underline;}
+.pagenum .l_border{border-top:1px solid #dbc497; border-bottom:1px solid #efdba8; width:100%; height:0; line-height:0; font-size:0;}
+.table{}
+.table a{ font-size:13px}
+.table li{position:relative; line-height:44px;_overflow:hidden; border-bottom:1px dashed #dbc498; padding:10px 0;}
+.table .th{ font-weight:bold;}
+.table .tdleft{ width:60%; float:left; position:relative}
+.table .tdleft img{ border:1px solid #302313; border-radius:3px; float:left; margin:0 10px 0 0; width:42px; height:42px;}
+.table .tdleft a{ display:block; overflow:hidden}
+.table .tdleft span{ line-height:20px;}
+.table .tdleft .rwname{ float:left; font-weight:bold;color: #3a3a3a;}
+.table .tdleft .rwinfo{ position:absolute; font-size:12px; color:#8b6c3f; line-height:16px; left:56px; top:25px}
+.table .tdright{width:38%; position:relative; float:right}
+.table .tdright a{color: #392817;}
+.table .tdright span{ float:left; width:80px; position:relative; line-height:44px; text-align:center;font-size:16px;}
+.table .tdright span em{ display:block;color:#392817; line-height:20px}
+.table .tdright span em a{color: #392817;}
+.table .tdright span em.small{ font-size:12px; color:#8b6c3f; top:10px}
+.table .tdright span em.small a{color: #8b6c3f;}
+.table .tdright span img{ vertical-align:text-top;_vertical-align:text-bottom; margin-left:3px; _position:absolute;}
+.table .color_y,.table .color_y a{color:#b9aa01;}
+.table .color_o,.table .color_o a{color:#ff7800;}
+.table .color_g,.table .color_g a{color:#afac88;}
+.table .color_bla,.table .color_bla a{color:#787878;}
+.table .color_blu,.table .color_blu a{color:#01bcec;}
+.table .color_gr,.table .color_gr a{color:#2dbb48;}
+
+/*footer*/
+.footer_bottom{border-top:3px solid #fda500;background-color:#2e2e2e;margin-top:20px;text-align:center;padding:20px 0;}
+.footer_bottom p{font-size:12px;color:#6b6b6b;line-height:24px;}
+.footer_bottom p a{color:#6b6b6b;text-decoration:none;}
+.footer_bottom p a:hover{text-decoration:underline;}
+.footer_bottom .footerNav{padding-bottom:10px;}
+.footer_bottom .footerNav a{font-size:14px;color:#838383;}
+
+/*卡组*/
+.kz_topArea{ width:958px;border:1px solid #c8ad77;border-radius:3px;background-color:rgba(239,231,214,0.3);background-color:#eadab6\9; font:normal 12px/16px "宋体"; color:#8b6c3f; position:relative; overflow:hidden;}
+.kz_topArea .leftArea{width:600px; float:left;}
+.kz_topArea .kz_title{ background:url(http://img.laohu.com/ls/images/kz_topline.jpg) no-repeat left bottom; height:60px; margin:5px 0 0 20px;}
+.kz_topArea .kz_title h2{background:url(http://img.laohu.com/ls/images/kz_tico.jpg) no-repeat left 14px;padding-left:40px; height:60px; line-height:60px; color:#302313; font-size:24px;overflow: hidden;}
+.kz_topArea .rightArea{width:286px; float:left; margin:30px 0 0 20px;_margin:30px 0 0 10px;}
+.kz_topArea .kz_info{ background:url(http://img.laohu.com/ls/images/kz_border.jpg) no-repeat; margin:20px 0 0 20px; height:133px; position:relative; padding:0 0 30px 290px;}
+.kz_topArea .kz_info img{ border:none; position:absolute; left:4px; top:5px;_left:-246px;width:270px;height:112px}
+.kz_topArea .kz_info p{ line-height:20px; background:url(http://img.laohu.com/ls/images/kz_tico1.jpg) no-repeat 0 2px; padding-left:18px; margin-top:5px;}
+.kz_topArea .kz_info a{ color:#8b6c3f;}
+.kz_topArea .kz_map{ border:1px solid #ad884b; border-radius:3px; background:#ddcaa4; padding:10px 20px; width:280px;}
+.kz_topArea .kz_map .map_title{ background:url(http://img.laohu.com/ls/images/kz_tmap.jpg) no-repeat center top; height:24px;font:bold 16px/24px "宋体"; text-align:center; color:#392817; margin-top:-22px; position:relative;}
+.kz_topArea .kz_map li{ background:url(http://img.laohu.com/ls/images/kz_tico5.jpg) no-repeat; width:22px; height:168px; float:left; margin:10px 0 0 8px; position:relative;}
+.kz_topArea .kz_map li span{ display:block; width:100%;position:absolute;}
+.kz_topArea .kz_map li span.num{font:bold 16px/24px "宋体"; text-align:center; color:#392817; }
+.kz_topArea .kz_map li span.hotline{ background:url(http://img.laohu.com/ls/images/kz_thot.jpg) no-repeat center bottom; left:0;}
+.kz_topArea .kz_map li span.hotline em{ display:block;display:none;}
+.kz_topArea .kz_map li span.stone{ background:url(http://img.laohu.com/ls/images/kz_tico3.jpg) no-repeat; width:28px; height:24px; line-height:24px;text-align:center; color:#fff; text-shadow:2px 1px 2px #000; font-size:14px; font-weight:bold; position:absolute; left:-3px; bottom:0;}
+.kz_tj{ position:relative; margin-top:30px; padding-bottom:20px;}
+.kz_tj h2{ color:#392817; font:bold 16px/30px "宋体"; height:30px; overflow:hidden;}
+.kz_tj h2 img{ vertical-align: middle; margin-right:4px;}
+.kz_tj .kz_con{ position:relative; margin-top:10px; padding-bottom:20px; padding-right:20px;}
+.kz_tj .kzlist{padding:6px 0 0 60px; position:relative;zoom:1;}
+.kz_tj .kz_num{ background:url(http://img.laohu.com/ls/images/kz_tjbs.jpg) no-repeat; width:48px; height:48px; line-height:48px; position:absolute; left:0; top:15px; font-size:24px; font-weight:bold; text-align:center; color:#fff;text-shadow:1px 1px 2px #000; }
+.kz_tj .kzlist li{ float:left; width:206px; height:60px; margin-left:10px; margin-top:10px; position:relative; overflow:hidden;}
+.kz_tj .kzlist li p{ font-size:12px; color:#392817; height:42px; line-height:42px; position:relative;z-index:1; padding-left:44px;}
+.kz_tj .kzlist li p.gray{ border:1px solid #aa906c; border-radius:3px; background:#e8d8b5;}
+.kz_tj .kzlist li p.yw{ border:1px solid #cb9850; border-radius:3px; background:#fde7b8; margin:-42px 0 0 -2px}
+.kz_tj .kzlist li p img{ vertical-align:middle; border:1px solid #4c3021; position:absolute;width:40px; height:40px;border-radius:3px; left:0; top:0;}
+.kz_tj .kzlist li p.smallPic{ background:url(http://img.laohu.com/ls/images/kz_tjarrow.jpg) no-repeat 10px 2px; padding-left:10px; z-index:3;}
+.kz_tj .kzlist li p.smallPic img{border:1px solid #583f26; border-radius:3px; width:18px; height:18px; top:-10px; left:34px; z-index:4;}
+.kz_tj .kzlist li p.pictips{border:1px solid #aa906c; border-radius:3px; background:#e8d8b5; position:absolute; top:15px; left:5px; z-index:8; width:155px}
+.kz_tj .kzlist li p.pictips img{border:1px solid #583f26; border-radius:3px;margin:0;}
+.kz_tj .kzlist li p.pictips span{ padding:0; margin:0; line-height:20px;color: #8B6C3F;}
+.yw_num{ color:#fff47b; background:#ff6900; border-radius:3px; position:absolute; right:10px; top:16px; z-index:4; width:16px; height:16px; font-size:12px; font-family:Arial; text-align:center;}
+/*组合连击*/
+.zhlj{ width:594px; position:relative; overflow:hidden;}
+.kz_tj .inf_box{ border:1px solid #c8ad77; border-radius:3px; background:#ebdbb8; padding:20px; margin-top:20px;}
+.kz_tj .inf_box p{ background:url(http://img.laohu.com/ls/images/kz_tico1.jpg) no-repeat 0 2px; font:normal 12px/20px "宋体"; color:#8b6c3f; padding-left:30px; margin-top:4px;}
+.zh_list{position:relative; margin-top:20px; float:left;}
+.zh_list .newlist{ padding:5px 0;}
+.zh_list .newlist p{ line-height:22px; color:#8b6c3f; font-size:14px; margin-top:10px;}
+.zh_list .newlist img{ width:18px; height:18px; border:1px solid #4c3021; border-radius:3px; vertical-align:top; margin:0 4px;}
+.zh_list .newlist p span{ padding:0 5px; color:#2e71c6;}
+.zh_right{ width:260px; float:right; padding-right:40px;position:relative; overflow:hidden;}
+/*核心卡牌*/
+.c_card{}
+.c_card li{ position:relative; padding-left:90px; margin-top:20px; height:80px;}
+.c_card li img{ width:80px; height:80px; position:absolute; left:0; top:0;}
+.c_card li p{ font-size:12px;color:#8b6c3f; line-height:20px;}
+.c_card li h3{color:#392817; font-size:14px; line-height:30px; height:30px; overflow:hidden;}
+/*替代卡牌*/
+.c_td{ position:relative; margin-top:20px;}
+.c_td li{ margin-top:20px; border-bottom:1px solid #dbc498; padding-bottom:10px;}
+.c_td li p{ font-size:12px; color:#8b6c3f; line-height:20px;}
+.c_td li .picbox{ background:url(http://img.laohu.com/ls/images/kz_tdbg.jpg) no-repeat; position:relative; padding-left:75px; height:64px; margin-bottom:10px;}
+.c_td li .picbox img{ position:absolute; width:40px; height:40px; border:1px solid #4c3021; border-radius:3px;}
+.c_td li .picbox img.img1{ left:22px; top:0;}
+.c_td li .picbox img.img2{ left:0px; top:22px;}
+.c_td li .picbox span{ display:block; color:#362311; font-size:14px; line-height:22px; padding-top:5px;}
+.c_td li .picbox span.font12{ font-size:12px; color:#5d391b;}
+/*卡组*/
+.kz_bs{ position:relative; margin-top:20px; overflow:hidden; zoom:1;_width:100%;_margin-top:0;}
+.kz_bs li{ float:left; background:url(http://img.laohu.com/ls/images/kz_tjlist.jpg) no-repeat; width:280px; height:252px; margin:20px 34px 0 0;overflow:hidden;}
+.kz_bs li img{ border:none; width:270px; height:112px; display:block;margin: 4px 0 0 4px;}
+.kz_bs li p{ font-size:12px; color:#fff; line-height:15px; padding:3px 0 0 5px;}
+.kz_bs li p span{ color:#cabf9a;}
+.kz_bs li p span em{ color:#fff; background:url(http://img.laohu.com/ls/images/baoshi.png) no-repeat;_background:url(http://img.laohu.com/ls/images/baoshi.gif) no-repeat; padding:0 3px 0 5px; line-height:15px; text-shadow:1px 1px 2px #000; margin:0 3px 0 4px;}
+.kz_bs li .myinfo{ font-size:14px; position:relative; margin-top:20px;}
+.kz_bs li .myinfo h3{ color:#392817; font-size:14px; line-height:30px; padding:10px 0;}
+.kz_bs li .myinfo p{ color:#8b6c3f; font:normal 14px/22px "宋体"; position:relative; padding:0;}
+.kz_bs li .myinfo p a{ position:absolute; right:0; bottom:0; _position:relative; color:#2366a5; font-size:12px;}
+.kz_ls{ margin-top:20px; position:relative;}
+/*传说*/
+.kz_cs{ margin:20px 0;}
+.kz_cs p{ font-size:14px; color:#8b6c3f; line-height:22px; margin-top:20px; padding-right:40px;}
+/*评论*/
+.kz_pl{ margin-top:30px;}
+/*详情*/
+.xq_top{ padding:20px 40px; color:#8b6c3f; font-size:14px;}
+.xq_top .picleft{ width:290px; float:left;}
+.xq_top .picleft .img{ height:360px; width:290px; position:relative;}
+.xq_top .picleft img{ position:absolute; width:168px; height:236px; opacity:0.3; filter:alpha(opacity=30); }
+.xq_top .picleft img.focus{ opacity:1; top:72px; left:35px; filter:alpha(opacity=100); width:168px; height:236px}
+.xq_top .picleft img.blur{top:52px; left:65px;}
+.xq_top .picleft img.focus{ opacity:1; top:72px; left:46px; filter:alpha(opacity=100); width:168px; height:236px}
+.xq_top .picleft img.blur{top:44px; left:86px;}
+.xq_top .picleft img.single{ opacity:1;filter:alpha(opacity=100);top:72px; left:46px; height:236px; width:168px;}
+.xq_top .picleft .cradtips{ background:#d9c7a2; border:1px solid #ad884b; border-radius:3px; padding:10px 20px; margin-top:10px; line-height:22px; margin-bottom:20px;}
+.xq_top .fontright{ float:right; width:515px;}
+.fonttitle{ background:url(http://img.laohu.com/ls/images/kz_topline.jpg) no-repeat right bottom; padding-bottom:20px;}
+.fonttitle h2{ line-height:24px; font-size:30px; font-family:"微软雅黑"; color:#000;}
+.fonttitle h2 img{ width:24px; height:24px; vertical-align:middle; margin-right:10px;}
+.xq_top .fontright h3{ color:#ff6900; line-height:30px; margin:20px 0;}
+.xq_top .fontright p{ line-height:30px;}
+.xq_top .fontright p img{ width:18px; height:18px; border:1px solid #604a2b; border-radius:3px; vertical-align: text-bottom; margin-right:8px;}
+.xq_top .fontright .color_gr{ color:#89c727;}
+.xq_top .fontright .color_b{color:#268cff;}
+.xq_top .fontright .color_g{color:#ff6900;}
+/*职业*/
+.xq_top .hero{ position:relative; width:60%;}
+.xq_top .hero .imgborder{width:216px; height:172px;}
+.xq_top .hero .imgborder img{width: 216px; height: 172px;}
+.xq_top .hero h2{ font-size:24px; color:#000; line-height:30px; margin:20px 0; font-family:"微软雅黑";}
+.xq_top .hero .fontright{ float:right; width:260px;position:relative;}
+.herobk{ background:#dbc9a3; border:1px solid #ad884b; border-radius:3px; padding:20px;width:250px; position:absolute; top:40px; right:40px;}
+.herobk h4{ margin:0 0 10px}
+.herobk p{ color:#8b6c3f; font-size:12px; line-height:22px; text-indent:2em}
+.herotx{}
+.herotx .herotitle{ background:url(http://img.laohu.com/ls/images/kz_topline.jpg) no-repeat right bottom;}
+.herotx .herotitle h5{ font-size:14px; color:#392817; font-weight:bold;background:url(http://img.laohu.com/ls/images/kz_topline.jpg) no-repeat left bottom; width:50%; padding-bottom:10px; margin-bottom:20px;}
+.herotx .herotitle h5 img{ vertical-align:middle; margin-right:5px;}
+.herotx p{ line-height:22px;}
+.zy{}
+.zy .c_card{ width:288px; overflow:hidden; position:relative;}
+.zy .kz_bs{ width:626px;}
+.zy .kz_bs ul{ height:816px}
+.zy .kz_bs li{ margin-right:24px;}
+/*划过弹出图片*/
+.hovnoImg{ display:none; position:absolute; border:0;  height:465px; padding:0; margin:0; z-index:200}
+/*分页*/
+.zy .kz_bs .page{clear:both;padding:15px 0 0;text-align:center;}
+.zy .kz_bs .page a{display:inline-block;width:24px;height:24px;line-height:24px;color:#6f6e6e;background-color:#ebdbb7;border:1px solid #c8ad77;border-radius:3px;text-decoration:none;font-size:14px;margin:0 5px;}
+.zy .kz_bs .page a:hover,.zy .kz_bs .page a.now{background-color:#dcc79c;color:#ff8934;border:1px solid #ad884b;}
+.zy .kz_bs .page .pre,.zy .kz_bs .page .next{background:url(http://ls.laohu.com/_s/ls/p_n_page.gif) no-repeat;border:0 none;background-color:transparent;}
+.zy .kz_bs .page .pre{background-position:8px -60px;}
+.zy .kz_bs .page .pre:hover{background-position:8px -93px;border:0 none;}
+.zy .kz_bs .page .next{background-position:9px 6px;}
+.zy .kz_bs .page .next:hover{background-position:9px -27px;border:0 none;}

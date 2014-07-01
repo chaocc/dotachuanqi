@@ -1,0 +1,144 @@
+<div class="container">
+	<div class="page-header">
+		<h1 style="display:none;">英雄列表</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/hero">英雄列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/hero/add">添加新英雄</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/hero/deleted">已删除英雄列表</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑英雄</a></li>
+			<?php endif;  ?>
+		</ul>
+		<form action="" method="get">
+				
+		</form>
+	</div>
+	
+
+	
+	
+	<div class="panel panel-primary">
+		<div class="panel-heading">英雄列表</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>英雄名称</th>
+					<th>英雄属性</th>
+					<th>英雄排位</th>
+					<th>英雄类型</th>
+					<th>英雄星级</th>
+					<th style="width:180px;">管理</th>
+				</tr>
+			</thead>
+			<tbody id="exccard">
+					<?php if ($hero): ?>
+				<?php foreach($hero as $v): ?>
+				<tr>
+					<td class="hero_id"><?php echo $v['id'];?></td>
+					<td><?php echo $v['hero_name'];?></td>
+					<td><textarea class="form-control" rows="3" name="attributes" placeholder="请输入描述"><?php echo $v['attributes'];?></textarea></td>
+					<td><?php echo $v['place'];?> </td>
+					<td><?php echo $v['class'];?></td>
+					<td><?php echo $v['star'];?></td>
+					<td>
+						<?php if (isset($subnav_active) && $subnav_active == 'deleted'){?>
+								<a href="javascript:;" class="btn btn-danger recover" role="button" style="margin-left:15px;">恢复</a>
+						<?php }else{ ?>
+							<a href="/console/hero/edit/<?php echo $v['id'];?>" class="btn btn-danger update" role="button">编辑</a>
+							<a href="javascript:;" class="btn btn-danger delete" role="button" style="margin-left:15px;">删除</a>
+						<?php } ?>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+				<?php endif;?>
+			</tbody>
+		</table>
+	</div>
+
+		<?php echo $pager; ?>
+
+</div>
+<script type="text/javascript">
+$(function(){
+	function set_heropage() {
+		var heroid = $.trim($('#heroname').val());
+		if(heroid) {
+			$('#heropage').attr('href', 'main/hero/'+heroid);
+		}
+		else {
+			$('#heropage').attr('href', '#');
+		}
+		$('#heropage').text($('#selecthero option:selected').text());
+	}
+	set_heropage();
+
+	$('#selecthero').change(function(){
+		if($('#selecthero').val() != '-1'){
+			$.post('console/hero/search',{heroid:$('#selecthero').val()}, function(data){
+				console.log(data.result);
+				if(data.result){
+					var opts = '';
+					opts += '<tr><td>' + data.hero.id+ '</td>';
+					opts += '<td>' + data.hero.hero_name + '</td>';
+					opts += '<td><textarea class="form-control" rows="3" name="description" placeholder="请输入描述">' +data.hero.attributes +'</textarea></td>';
+					opts+='<td>'+data.hero.place+'</td>';
+					opts+='<td>'+data.hero.class+'</td>';
+					opts+='<td>'+data.hero.star+'</td>';
+					opts += '<td><a href="javascript:;" class="btn btn-danger update" role="button">更新</a>';
+					opts += '<a href="javascript:;" class="btn btn-danger delete" role="button" style="margin-left:15px;">删除</a></td></tr>';
+					$('#exccard').html(opts);
+				}
+				else{
+					var opts = '<option value="-1" selected="selected">--选择--</option>';
+					$('#selectcard_hero').html(opts);
+					$('#heroname').val('');
+					$('#baike').val('');
+					alert(data.errormsg);
+				}
+				set_heropage();
+			},'json');
+		}
+		else{
+			alert("未选择英雄");
+		}
+	});
+bindclick();
+});
+	function bindclick(){
+		$('a.delete').unbind();
+		$('a.delete').click(function(){
+		if(confirm("确定要清空数据吗？"))
+		{
+				var hero_id = $(this).parent().parent().find('.hero_id').text();
+				var postdata = {
+						id: hero_id,
+				};
+				$.post('console/hero/remove',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		}
+		});
+				$('a.recover').unbind();
+		$('a.recover').click(function(){
+
+				var hero_id = $(this).parent().parent().find('.hero_id').text();
+				var postdata = {
+						id: hero_id,
+				};
+				$.post('console/hero/recover',postdata, function(data){
+					if(data.result){
+						window.location.reload();
+					}
+					else{
+						alert(data.errormsg);
+					}
+				},'json');
+		});
+	}
+</script>

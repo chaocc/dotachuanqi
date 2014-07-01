@@ -1,0 +1,549 @@
+<?php
+ if (isset($subnav_active) && $subnav_active == 'edit'):
+$attributes =explode(',',$hero['attributes']);
+
+$shuxing_array=array();
+foreach($attributes as $key =>$v)
+{
+	$shuxing = explode('：',$v);
+	array_push($shuxing_array,$shuxing[1]);
+}
+$power=$shuxing_array[0]; 
+$intelligence = $shuxing_array[1];
+$quick = $shuxing_array[2];
+$max = $shuxing_array[3];
+$attack = $shuxing_array[4];
+$magic = $shuxing_array[5];
+$armor = $shuxing_array[6];
+$magic_defense = $shuxing_array[7];
+$crit = $shuxing_array[8];
+endif;
+?>
+<div class="container">
+	<div class="page-header">
+		<h1><?php if($form_action == 'add'): ?>添加新<?php else: ?>编辑<?php endif; ?>英雄</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/hero">英雄列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/hero/add">添加新英雄</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑英雄</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	<form name="heroForm" id="heroForm" action="console/hero/<?php echo $form_action; ?>" method="post" class="form-horizontal" autocomplete="off" enctype="multipart/form-data">
+		
+		<div class="form-group">
+			<label for="hero_name" class="col-sm-2 control-label">英雄名</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="hero_name" name="hero_name" placeholder="请输入英雄名" value="" />
+				<?php else: ?>
+				<input type="hidden" value="<?php echo $hero['id'];?>" name="hero_id"/>
+					<p class="form-control-static">
+					<input type="text" class="form-control" id="hero_name" name="hero_name" placeholder="请输入英雄名" value="<?php echo $hero['hero_name']; ?>"/></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_hero_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="hero_img" class="col-sm-2 control-label">英雄图片地址</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="hero_img" name="hero_img" placeholder="请输入英雄图片地址" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="hero_img" name="hero_img" value="<?php echo $hero['hero_img'];?>"/>
+					</p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_hero_img" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="description" class="col-sm-2 control-label">英雄描述</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<textarea class="form-control" rows="3" name="description" id="description" placeholder="请输入英雄描述"></textarea>
+				<?php else: ?>
+					<p class="form-control-static"><textarea class="form-control" rows="3" name="description" id="description" placeholder="请输入英雄描述"><?php if($hero['description']!='' && $hero['description']) { echo $hero['description']; } ?></textarea>
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="tujin" class="col-sm-2 control-label">英雄来源</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<textarea class="form-control" rows="3" name="tujin" id="tujin" placeholder="请输入英雄来源"></textarea>请用,分割
+				<?php else: ?>
+					<p class="form-control-static"><textarea class="form-control" rows="3" name="tujin" id="tujin" placeholder="请输入英雄来源"><?php if($hero['tujin']!='' && $hero['tujin']) { echo $hero['tujin']; } ?></textarea>请用 | 分割
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="power" class="col-sm-2 control-label">力量属性</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="power" name="power" placeholder="请输入力量属性" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="power" name="power" placeholder="请输入力量属性" value="<?php echo $power;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="quick" class="col-sm-2 control-label">敏捷属性</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="quick" name="quick" placeholder="请输入敏捷属性" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="quick" name="quick" placeholder="请输入敏捷属性" value="<?php echo $quick;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+			<div class="form-group">
+			<label for="intelligence" class="col-sm-2 control-label">智力属性</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="intelligence" name="intelligence" placeholder="请输入智力属性" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="intelligence" name="intelligence" placeholder="请输入智力属性" value="<?php echo $intelligence;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="max" class="col-sm-2 control-label">最大生命值</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="max" name="max" placeholder="请输入最大生命值" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="max" name="max" placeholder="请输入最大生命值" value="<?php echo $max;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+			<div class="form-group">
+			<label for="attack" class="col-sm-2 control-label">物理攻击</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="attack" name="attack" placeholder="请输入物理攻击" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="attack" name="attack" placeholder="请输入物理攻击" value="<?php echo $attack;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="magic" class="col-sm-2 control-label">魔法强度</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="magic" name="magic" placeholder="请输入魔法强度" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="magic" name="magic" placeholder="请输入魔法强度" value="<?php echo $magic;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		 <div class="form-group">
+			<label for="armor" class="col-sm-2 control-label">物理护甲</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="armor" name="armor" placeholder="请输入物理护甲" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="armor" name="armor" placeholder="请输入物理护甲" value="<?php echo $armor;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+			<div class="form-group">
+			<label for="magic_defense" class="col-sm-2 control-label">魔法抗性</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="magic_defense" name="magic_defense" placeholder="请输入魔法抗性" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="magic_defense" name="magic_defense" placeholder="请输入魔法抗性" value="<?php echo $magic_defense;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="crit" class="col-sm-2 control-label">物理暴击</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+						<input type="text" class="form-control" id="crit" name="crit" placeholder="请输入物理暴击" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="crit" name="crit" placeholder="请输入物理暴击" value="<?php echo $crit;?>" />
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="star" class="col-sm-2 control-label">英雄星级</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<?php echo form_dropdown('star', $this->star_options, '1','class="form-control" id="star"');  ?>
+				<?php else: ?>
+					<p class="form-control-static"><?php echo form_dropdown('star', $this->star_options, $hero['star'],'class="form-control" id="star"');  ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_star" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+			<div class="form-group">
+			<label for="place" class="col-sm-2 control-label">英雄排位</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<?php echo form_dropdown('place', $this->place_options, '前排','class="form-control" id="place"');  ?>
+				<?php else: ?>
+					<p class="form-control-static"><?php echo form_dropdown('place', $this->place_options, $hero['place'],'class="form-control" id="place"');  ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_place" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="class" class="col-sm-2 control-label">英雄类型</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<?php echo form_dropdown('class', $this->class_options, '力量','class="form-control" id="class"');  ?>
+				<?php else: ?>
+					<p class="form-control-static"><?php echo form_dropdown('class', $this->class_options,$hero['class'],'class="form-control" id="class"');  ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_class" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="attributes_type" class="col-sm-2 control-label">属性类型</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<?php echo form_dropdown('attributes_type', $this->attributes_type_options, '治疗','class="form-control" id="attributes_type"');  ?>
+				<?php else: ?>
+					<p class="form-control-static"><?php echo form_dropdown('attributes_type', $this->attributes_type_options,$hero['attributes_type'],'class="form-control" id="attributes_type"');  ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_class" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="goods" class="col-sm-2 control-label">装备</label>
+			
+			<?php if($form_action == 'add'): ?>
+			<div class="col-sm-4" id="goods">
+				<div class="cf" style="clear:both;">
+				<input type="text" class="form-control" name="goods_type_0" value="" /><br/>
+				<input type="hidden" name="goods_count" value="1" class="goods_count"/>
+				<?php for($i=0;$i<6;$i++){?>
+				<div class="add choice" style="min-width:55px;">
+						<span></span>
+				</div>
+				
+			<?php } ?>
+			</div>
+			<div class="add-into cf" style="min-width:55px; clear:both;"></div>	
+			<div class="add-row"><p></p></div>
+			</div>	
+			<?php else: ?>
+			<div class="col-sm-4" id="goods">
+			<input type="hidden" name="goods_count" value="<?php echo count($equipment);?>" class="goods_count"/>
+					<?php 
+				
+					if($equipment[0])
+					{
+						foreach($equipment as $key =>$v){
+							$array = explode(':',$v);
+							foreach($array as $k =>$p){
+							if($k%2==0){
+					?>
+					<div class="cf" style="clear:both;">
+					<input type="text" class="form-control" name="goods_type_<?php echo $key;?>" value="<?php echo $p;?>" /><br/>
+					
+					<?php }else{
+						$array2 = explode('|',$p);
+						$count=count($array2);
+						foreach($array2 as $k2 =>$q)
+						{
+							echo '<a><em>X</em><img src="/upload/goods_img/'.$q.'.jpg" style="height:55px;width:55px;"/>
+							<input type="hidden" value="'.$q.'" name="goods_name_'.$key.'[]"/>
+							&nbsp;</a>';
+							
+						}
+						if($count<6)
+						{
+							for($i=0;$i<(6-$count);$i++)
+							{
+								echo '<div class="add choice" style="min-width:55px;"><span></span></div>';
+							}
+						}
+					}
+				
+					}
+					echo '</div>';
+					} }
+					?>
+				<div class="add-into cf" style="min-width:55px; clear:both;"></div>	
+				<div class="add-row"><p></p></div>
+			
+			</div>
+			<?php endif; ?>
+			<div id="alert_goods" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">提交</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="fc" style="display:none; min-width:180px; z-index:9999; background:#fff; position:absolute;">
+	<input type="text" value="" name="name" style="min-width:180px; border:1px solid #cdcdcd; padding-right:5px;" class="armor_search" />
+	<div style="border:1px solid #cdcdcd; border-top:0; min-height:100px; padding-bottom:8px;" id="item" class="item">
+	</div>
+</div>
+
+<script type="text/javascript">
+var be_choiced_id;
+		function return_id(be_choiced_id){
+			var $html='<a><em>X</em><img src="/upload/goods_img/'+be_choiced_id+'.jpg" style="height:55px;width:55px;">&nbsp;<input type="hidden" value="'+be_choiced_id+'" name="goods_name"/></a>';
+			$('#goods .beclicked').parent().after($html);
+			var $input_choose = $('#goods .beclicked').parent().parent().find("input").eq(0);
+			var input_name = $input_choose.attr("name");
+			var input_name_id = input_name.split("_")[2];
+			var input_new_name = $('#goods .beclicked').parent().next().find("input").attr("name").split("_");
+			$('#goods .beclicked').parent().next().find("input").attr("name",input_new_name[0]+"_"+input_new_name[1]+"_"+input_name_id+"[]");
+			$('#goods .beclicked').parent().remove();
+			$(".fc input").val("");
+			$(".fc").hide();
+		};
+$(function(){
+		
+		$(".col-sm-4").children().eq(0).css("margin-top","0 !important");
+		$(".add,.col-sm-4").delegate('span','click',function(){
+			var layer = $('.fc');
+			 var offset = $(this).offset();
+			 var top = offset.top+35;
+			 var left = offset.left+55;
+			 $(".add,.col-sm-4 span").removeClass("beclicked");
+			 $(this).addClass("beclicked");
+			 layer.css({'left':left,'top':top});
+			 layer.show();
+			 $(".fc input").focus();					
+		});
+		$(".fc").blur(function(){
+			//$(".fc").hide();
+		});
+		$(".fc").mouseleave(function(){
+			$(".fc input").val("");
+			$(".fc").hide();
+		});
+		$(".col-sm-4").delegate('a em','click',function(){
+			var addHtml = '<div class="add" style="min-width:55px;"><span></span></div>';
+			$(this).parent().after(addHtml);
+			$(this).parent().remove();
+		});
+		$(".add-row").click(function(){
+			
+			var add_into_html_now = $(".add-into").html();
+			var old_count=parseInt($('.goods_count').val());
+			var goods_count=parseInt($('.goods_count').val())+1;
+			$('.goods_count').val(goods_count);
+			var add_into_html_add = '<div><input class="form-control" type="text" value="" name="goods_type_'+old_count+'"><br><div class="add"><span></span></div><div class="add"><span></span></div><div class="add"><span></span></div><div class="add"><span></span></div><div class="add"><span></span></div><div class="add"><span></span></div><div class="cf" style="clear:both;"></div></div>';
+			var add_into_newHtml = add_into_html_now + add_into_html_add;
+			$(".add-into").html(add_into_newHtml);
+		});
+		/*
+	function check_hero(element)
+	{
+		var flag = true;
+		
+		//hero_name
+		if ($("input[name='hero_name']").size()) {
+			var hero_name = $.trim($('#hero_name').val());
+			if ( ! hero_name && ( ! element || element == 'hero_name')) {
+				$('#alert_hero_name').text('英雄名不能为空');
+				$('#alert_hero_name').css('display', 'block');
+				$('#hero_name').parent().parent().addClass('has-error');
+				flag = false;
+			}
+		}
+		
+		// hero_img
+		if ($("input[name='hero_img']").size()) {
+			var hero_img = $.trim($('#hero_img').val());
+			if ( ! hero_img && ( ! element || element == 'hero_img')) {
+				$('#alert_hero_img').text('英雄图片不能为空');
+				$('#alert_hero_img').css('display', 'block');
+				$('#hero_img').parent().parent().addClass('has-error');
+				flag = false;
+			}
+		}
+		
+		// attributes
+		var attributes = $.trim($('#attributes').val());
+		if (! attributes && ( ! element || element == 'attributes')) {
+			$('#alert_attributes').text('英雄属性不能为空');
+			$('#alert_attributes').css('display', 'block');
+			$('#attributes').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		// star
+		var star = $.trim($('#star').val());
+		console.log(star);
+		if (! star && ( ! element || element == 'star')) {
+			$('#alert_star').text('英雄星级不能为空');
+			$('#alert_star').css('display', 'block');
+			$('#star').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		// place
+		var place = $.trim($('#place').val());
+		if (! place && ( ! element || element == 'place')) {
+			$('#alert_place').text('英雄排位不能为空');
+			$('#alert_place').css('display', 'block');
+			$('#place').parent().parent().addClass('has-error');
+			flag = false;
+		}
+
+		// class
+		var type = $.trim($('#class').val());
+		if (! type && ( ! element || element == 'class')) {
+			$('#alert_class').text('英雄类型不能为空');
+			$('#alert_class').css('display', 'block');
+			$('#class').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		// goods
+		var goods = $.trim($('#goods').val());
+		if (! goods && ( ! element || element == 'goods')) {
+			$('#alert_goods').text('装备不能为空');
+			$('#alert_goods').css('display', 'block');
+			$('#goods').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		return flag;
+	}
+	$('#heroForm').submit(function(){
+		return check_hero();
+	});
+	if ($("input[name='hero_name']").size()) {
+		$('#hero_name').focus(function(){
+			$('#hero_name').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_hero_name').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('hero_name');
+		});
+	}
+	
+	if ($("input[name='hero_img']").size()) {
+		$('#hero_img').focus(function(){
+			$('#hero_img').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_hero_img').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('hero_img');
+		});
+	}
+	
+		if ($("input[name='attributes']").size()) {
+		$('#attributes').focus(function(){
+			$('#attributes').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_attributes').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('attributes');
+		});
+	}
+	
+	if ($("input[name='star']").size()) {
+		$('#star').focus(function(){
+			$('#star').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_star').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('star');
+		});
+	}
+	
+		if ($("input[name='place']").size()) {
+		$('#place').focus(function(){
+			$('#place').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_place').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('place');
+		});
+	}
+	
+	if ($("input[name='class']").size()) {
+		$('#class').focus(function(){
+			$('#class').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_class').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('class');
+		});
+	}
+
+		if ($("input[name='goods']").size()) {
+		$('#goods').focus(function(){
+			$('#goods').parent().parent().removeClass('has-success has-warning has-error');
+			$('#alert_goods').css('display', 'none');
+		})
+		.blur(function(){
+			check_hero('goods');
+		});
+	}
+	*/
+
+	$(".armor_search").autocomplete('http://dotachuanqi.com/console/goods/get_goods', {
+		multiple: true,
+		dataType: "json",
+		parse: function(data) {
+			return $.map(data, function(row) {
+				return {
+					data: row,
+					value: row.id,
+					result: row.goods_name
+				}
+			});
+		},
+		formatItem: function(row) {
+			return  "<p class="+row.id+"> " +row.goods_name+ "</p>";
+		}
+		
+	})
+	
+})
+</script>

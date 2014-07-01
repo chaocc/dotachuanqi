@@ -1,0 +1,212 @@
+<div class="container">
+	<div class="page-header">
+		<h1><?php if($form_action == 'add'): ?>添加新<?php else: ?>编辑<?php endif; ?>物品</h1>
+		<ul class="nav nav-pills">
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/goods">物品列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/goods/add">添加新物品</a></li>
+			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
+			<li class="active"><a href="javascript:;">编辑物品</a></li>
+			<?php endif;  ?>
+		</ul>
+	</div>
+	<form name="goodsForm" id="goodsForm" action="console/goods/<?php echo $form_action; ?>" method="post" class="form-horizontal" autocomplete="off" enctype="multipart/form-data">
+		
+		<div class="form-group">
+			<label for="goods_name" class="col-sm-2 control-label">物品名</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="goods_name" name="goods_name" placeholder="请输入物品名" value="" />
+				<?php else: ?>
+				<input type="hidden" value="<?php echo $goods['id'];?>" name="goods_id"/>
+					<p class="form-control-static">
+					<input type="text" class="form-control" id="goods_name" name="goods_name" placeholder="请输入物品名" value="<?php echo $goods['goods_name']; ?>"/></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_goods_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="goods_img" class="col-sm-2 control-label">物品图片地址</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="goods_img" name="goods_img" placeholder="请输入物品图片地址" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="goods_img" name="goods_img" value="<?php echo $goods['goods_img'];?>"/>
+					</p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_goods_img" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="golds" class="col-sm-2 control-label">售价</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="golds" name="golds" placeholder="请输入物品图片地址" value="" />
+				<?php else: ?>
+					<p class="form-control-static">
+						<input type="text" class="form-control" id="golds" name="golds" value="<?php echo $goods['golds'];?>"/>
+					</p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_golds" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="color" class="col-sm-2 control-label">物品颜色</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<?php echo form_dropdown('color', $this->color_options, '治疗','class="form-control" id="color"');  ?>
+				<?php else: ?>
+					<p class="form-control-static"><?php echo form_dropdown('color', $this->color_options,$goods['color'],'class="form-control" id="color"');  ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_class" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="tujin" class="col-sm-2 control-label">获得途径</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<textarea class="form-control" rows="3" name="tujin" id="tujin" placeholder="请输入获得途径"></textarea>请用,分割
+				<?php else: ?>
+					<p class="form-control-static"><textarea class="form-control" rows="3" name="tujin" id="tujin" placeholder="请输入获得途径"><?php if($goods['tujin']!='' && $goods['tujin']) { echo $goods['tujin']; } ?></textarea>请用,分割
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label for="description" class="col-sm-2 control-label">物品描述</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<textarea class="form-control" rows="3" name="description" id="description" placeholder="请输入物品描述"></textarea>
+				<?php else: ?>
+					<p class="form-control-static"><textarea class="form-control" rows="3" name="description" id="description" placeholder="请输入物品描述"><?php if($goods['description']!='' && $goods['description']) { echo $goods['description']; } ?></textarea>
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+
+		<div class="form-group">
+			<label for="xiaoguo" class="col-sm-2 control-label">物品效果</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input class="form-control" rows="3" name="xiaoguo" id="xiaoguo" placeholder="请输入物品效果"/>
+				<?php else: ?>
+					<p class="form-control-static"><input class="form-control" rows="3" name="xiaoguo" id="xiaoguo" placeholder="请输入物品效果" value="<?php if($goods['xiaoguo']!='' && $goods['xiaoguo']) { echo $goods['xiaoguo']; } ?>">
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+	
+		
+		<div class="form-group">
+		<?php if($form_action == 'add'): ?>
+			<label for="be" class="col-sm-2 control-label">可合成装备</label>
+			<div class="col-sm-4" id="goods">
+				<?php for($i=0;$i<6;$i++){?>
+				<div class="add choice" style="min-width:55px;">
+						<span></span>
+				</div>
+				<?php } ?>
+			</div>
+			<?php else: ?>
+			<label for="be" class="col-sm-2 control-label">可合成装备</label>
+				<div class="col-sm-4" id="goods">
+			<?php 
+			$goods['tobe'] = explode(',',$goods['tobe']);
+			$count=count($goods['tobe']);
+			if($count<6)
+			{
+			foreach($goods['tobe'] as $k =>$v){ ?>
+				<a><em>X</em><img src="/upload/goods_img/<?php echo $v;?>.jpg" style="height:55px;width:55px;"/>&nbsp;</a>
+				<input type="hidden" name="tobe[]" value="<?php echo $v;?>"/>
+			<?php }
+				for($i=0;$i<6-$count;$i++)
+				{
+				echo '				<div class="add choice" style="min-width:55px;">
+						<span></span>
+				</div>';
+				}
+			} ?>
+			</div>
+			<?php endif; ?>
+			<div id="alert_goods" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+			
+		</div>
+		
+	
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">提交</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="fc" style="display:none; min-width:180px; z-index:9999; background:#fff; position:absolute;">
+	<input type="text" value="" name="name" style="min-width:180px; border:1px solid #cdcdcd; padding-right:5px;" class="armor_search" />
+	<div style="border:1px solid #cdcdcd; border-top:0; min-height:100px; padding-bottom:8px;" id="item" class="item">
+	</div>
+</div>
+<script type="text/javascript">
+var be_choiced_id;
+function return_id(be_choiced_id){			
+	var $html='<a><em>X</em><img src="/upload/goods_img/'+be_choiced_id+'.jpg" style="height:55px;width:55px;">&nbsp;<input type="hidden" value="'+be_choiced_id+'" name="tobe[]"/></a>';
+	$('#goods .beclicked').parent().after($html);
+	$('#goods .beclicked').parent().remove();
+	$(".fc input").val("");
+	$(".fc").hide();
+};
+	$(function(){
+		
+		$(".add,.col-sm-4").delegate('span','click',function(){
+			var layer = $('.fc');
+			 var offset = $(this).offset();
+			 var top = offset.top+35;
+			 var left = offset.left+55;
+			 $(".add,.col-sm-4 span").removeClass("beclicked");
+			 $(this).addClass("beclicked");
+			 layer.css({'left':left,'top':top});
+			 layer.show();
+			 $(".fc input").focus();					
+		});
+		
+		$(".fc").blur(function(){
+			//$(".fc").hide();
+		});
+		$(".fc").mouseleave(function(){
+			$(".fc input").val("");
+			$(".fc").hide();
+		});
+		
+		$(".col-sm-4").delegate('a em','click',function(){
+			var addHtml = '<div class="add" style="min-width:55px;"><span></span></div>';
+			$(this).parent().after(addHtml);
+			$(this).parent().remove();
+		});
+		
+		$(".armor_search").autocomplete('http://dotachuanqi.com/console/goods/get_goods', {
+		multiple: true,
+		dataType: "json",
+		parse: function(data) {
+			return $.map(data, function(row) {
+				return {
+					data: row,
+					value: row.id,
+					result: row.goods_name
+				}
+			});
+		},
+		formatItem: function(row) {
+			return  "<p class="+row.id+"> " +row.goods_name+ "</p>";
+		}
+		
+	})
+	})
+</script>

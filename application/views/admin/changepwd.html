@@ -1,0 +1,103 @@
+<div class="container">
+	<div class="page-header">
+		<h1>密码修改</h1>
+	</div>
+	<form name="changepwdForm" id="changepwdForm" action="console/login/change" method="post" class="form-horizontal">
+		<div class="form-group">
+			<label for="username" class="col-sm-2 control-label">用户名</label>
+			<div class="col-sm-4">
+				<p class="form-control-static"><?php echo $user['user_name']; ?></p>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="oldpassword" class="col-sm-2 control-label">旧密码</label>
+			<div class="col-sm-4">
+				<input type="password" name="oldpassword" id="oldpassword" value="" placeholder="请输入您的旧密码" class="form-control" />
+			</div>
+			<div id="alert_oldpassword" class="alert alert-danger col-sm-3 form-none"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="newpassword" class="col-sm-2 control-label">新密码</label>
+			<div class="col-sm-4">
+				<input type="password" name="newpassword" id="newpassword" value="" placeholder="请输入您的新密码(长度至少6位)" class="form-control" />
+			</div>
+			<div id="alert_newpassword" class="alert alert-danger col-sm-3 form-none"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="renewpassword" class="col-sm-2 control-label">密码确认</label>
+			<div class="col-sm-4">
+				<input type="password" name="renewpassword" id="renewpassword" value="" placeholder="请再次输入您的新密码(长度至少6位)" class="form-control" />
+			</div>
+			<div id="alert_renewpassword" class="alert alert-danger col-sm-3 form-none"></div>
+		</div>		
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">修改密码</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('#oldpassword').focus();
+	function check_login(element){
+		var oldpassword = $.trim($('#oldpassword').val());
+		var newpassword = $.trim($('#newpassword').val());
+		var renewpassword = $.trim($('#renewpassword').val());
+		var flag = true;
+		
+		if ( ! oldpassword && ( ! element || element == 'oldpassword') ) {
+			$('#alert_oldpassword').text('旧密码不能为空');
+			$('#alert_oldpassword').css('display', 'block');
+			$('#oldpassword').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		if ( (! newpassword || newpassword.length < 6) && ( ! element || element == 'newpassword') ) {
+			$('#alert_newpassword').text('密码不能为空或长度未达到6位以上');
+			$('#alert_newpassword').css('display', 'block');
+			$('#newpassword').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		if ( (! renewpassword || renewpassword.length < 6 || renewpassword != newpassword) && ( ! element || element == 'renewpassword') ) {
+			$('#alert_renewpassword').text('两次密码不一致或者密码未达到6位以上');
+			$('#alert_renewpassword').css('display', 'block');
+			$('#renewpassword').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		return flag;
+	}
+	$('#changepwdForm').submit(function(){
+		return check_login();
+	});
+	$('#oldpassword').focus(function(){
+		$('#oldpassword').parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_oldpassword').css('display', 'none');
+	});
+	$('#oldpassword').blur(function(){
+		check_login('oldpassword');
+	});
+	$('#newpassword').focus(function(){
+		$('#newpassword').parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_newpassword').css('display', 'none');
+	});
+	$('#newpassword').blur(function(){
+		check_login('newpassword');
+	});
+	$('#renewpassword').focus(function(){
+		$('#renewpassword').parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_renewpassword').css('display', 'none');
+	});
+	$('#renewpassword').blur(function(){
+		check_login('renewpassword');
+	});
+})
+</script>

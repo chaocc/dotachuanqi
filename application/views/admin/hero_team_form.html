@@ -1,0 +1,161 @@
+<div class="container">
+	<div class="page-header">
+		<h1><?php if($form_action == 'add'): ?>添加新<?php else: ?>编辑<?php endif; ?>最强阵容</h1>
+		
+	</div>
+	<form name="heroTeamFrom" id="heroTeamFrom" action="console/hero_team/<?php echo $form_action; ?>" method="post" class="form-horizontal" autocomplete="off">
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">阵容名称</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="name" name="name" placeholder="请输入最强阵容名称" value="" />
+				<?php else: ?>
+					<input type="hidden" name="id" value="<?php echo $hero_team['id'];?>"/>
+					<p class="form-control-static"><input type="text" class="form-control" id="name" name="name" placeholder="请输入最强阵容名称" value="<?php echo $hero_team['name'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_name" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="sort" class="col-sm-2 control-label">阵容权重</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="sort" name="sort" placeholder="请输入阵容权重" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="sort" name="sort" placeholder="请输入阵容权重" value="<?php echo $hero_team['sort'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_reason" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+
+		
+			<div class="form-group">
+			<label for="reason" class="col-sm-2 control-label">推荐理由</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="reason" name="reason" placeholder="请输入推荐理由" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="reason" name="reason" placeholder="请输入推荐理由" value="<?php echo $hero_team['reason'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_reason" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="reason" class="col-sm-2 control-label">阵容组合</label>
+			<?php if($form_action == 'add'): ?>
+			<div class="col-sm-4" id="goods">
+				<?php for($i=0;$i<6;$i++){?>
+				<div class="add choice" style="min-width:55px;">
+						<span></span>
+				</div>
+				<?php } ?>
+			</div>
+			<?php else: ?>
+			<div class="col-sm-4" id="goods">
+				<?php  
+					$hero_team['hero_id'] = explode(',',$hero_team['hero_id']);
+					$count=count($hero_team['hero_id']);
+					if($count<5)
+					{
+					foreach($hero_team['hero_id'] as $k=>$v)
+					{
+				?>
+				<a><em>X</em><img src="/upload/hero_img/<?php echo $v;?>.jpg" style="height:55px;width:55px;"/>&nbsp;</a>
+				<input type="hidden" value="<?php echo $v;?>" name="hero_id[]"/>
+				<?php
+				} 
+				for($i=0;$i<6-$count;$i++) 
+				{
+					echo '<div class="add" style="min-width:55px;"><span></span></div>';
+				}
+				}?>
+			</div>
+			<?php endif; ?>
+			<div id="alert_reason" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+			<div class="form-group">
+			<label for="type" class="col-sm-2 control-label">阵容类型</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<?php echo form_dropdown('type', $this->type_options, '推图阵容','class="form-control" id="type"');  ?>
+				<?php else: ?>
+					<p class="form-control-static"><?php echo form_dropdown('type', $this->type_options,$hero_team['reason'],'class="form-control" id="type"');  ?></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_reason" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		
+
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+				<input type="hidden" name="form_submit" value="1" />
+				<button type="submit" id="form_submit" class="btn btn-primary btn-lg">提交</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="fc" style="display:none; min-width:180px; z-index:9999; background:#fff; position:absolute;">
+	<input type="text" value="" name="name" style="min-width:180px; border:1px solid #cdcdcd; padding-right:5px;" class="armor_search" />
+	<div style="border:1px solid #cdcdcd; border-top:0; min-height:100px; padding-bottom:8px;" id="item" class="item">
+	</div>
+</div>
+<script type="text/javascript">
+var be_choiced_id;
+		function return_id(be_choiced_id){			
+			var $html='<a><em>X</em><img src="/upload/hero_img/'+be_choiced_id+'.jpg" style="height:55px;width:55px;">&nbsp;<input type="hidden" value="'+be_choiced_id+'" name="hero_id[]"/></a>';
+			$('#goods .beclicked').parent().after($html);
+			$('#goods .beclicked').parent().remove();
+			$(".fc input").val("");
+			$(".fc").hide();
+		};
+	$(function(){
+		$(".col-sm-4").children().eq(0).css("margin-top","0 !important");
+		$(".add,.col-sm-4").delegate('span','click',function(){
+			var layer = $('.fc');
+			 var offset = $(this).offset();
+			 var top = offset.top+35;
+			 var left = offset.left+55;
+			 $(".add,.col-sm-4 span").removeClass("beclicked");
+			 $(this).addClass("beclicked");
+			 layer.css({'left':left,'top':top});
+			 layer.show();
+			 $(".fc input").focus();					
+		});
+		$(".fc").blur(function(){
+			//$(".fc").hide();
+		});
+		$(".fc").mouseleave(function(){
+			$(".fc input").val("");
+			//$(".fc").hide();
+		});
+		$(".col-sm-4").delegate('a em','click',function(){
+			var addHtml = '<div class="add" style="min-width:55px;"><span></span></div>';
+			$(this).parent().after(addHtml);
+			$(this).parent().remove();
+		});
+		
+		$(".armor_search").autocomplete('http://dotachuanqi.com/console/hero/get_hero', {
+		multiple: true,
+		dataType: "json",
+		parse: function(data) {
+			return $.map(data, function(row) {
+				return {
+					data: row,
+					value: row.id,
+					result: row.hero_name
+				}
+			});
+		},
+		formatItem: function(row) {
+			return  "<p class="+row.id+"> " +row.hero_name+ "</p>";
+		}
+		
+	})
+	})
+</script>

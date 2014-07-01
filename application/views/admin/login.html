@@ -1,0 +1,74 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1><?php echo $site_name; ?> 管理中心</h1>
+		<form name="loginForm" id="loginForm" action="console/login" method="post" class="form-horizontal" role="form" autocomplete="off">
+			<div class="form-group">
+				<label for="username" class="col-sm-2 control-label">用户名</label>
+				<div class="col-sm-4">
+					<input type="text" name="username" id="username" value="" placeholder="请输入您的用户名" class="form-control" />
+				</div>
+				<div id="alert_username" class="alert alert-danger col-sm-3 form-none"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">密码</label>
+				<div class="col-sm-4">
+					<input type="password" name="password" id="password" value="" placeholder="请输入您的密码" class="form-control" />
+				</div>
+				<div id="alert_password" class="alert alert-danger col-sm-3 form-none"></div>
+			</div>
+			
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="hidden" name="formhash" value="<?php echo $formhash; ?>" />
+					<input type="hidden" name="form_submit" value="1" />
+					<button type="submit" id="form_submit" class="btn btn-primary btn-lg">登录</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('#username').focus();
+	function check_login(element){
+		var username = $.trim($('#username').val());
+		var password = $.trim($('#password').val());
+		var flag = true;
+		
+		if ( ! username && ( ! element || element == 'username') ) {
+			$('#alert_username').text('用户名不能为空');
+			$('#alert_username').css('display', 'block');
+			$('#username').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		if ( ! password && ( ! element || element == 'password') ) {
+			$('#alert_password').text('密码不能为空');
+			$('#alert_password').css('display', 'block');
+			$('#password').parent().parent().addClass('has-error');
+			flag = false;
+		}
+		
+		return flag;
+	}
+	$('#loginForm').submit(function(){
+		return check_login();
+	});
+	$('#username').focus(function(){
+		$('#username').parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_username').css('display', 'none');
+	});
+	$('#username').blur(function(){
+		check_login('username');
+	});
+	$('#password').focus(function(){
+		$('#password').parent().parent().removeClass('has-success has-warning has-error');
+		$('#alert_password').css('display', 'none');
+	});
+	$('#password').blur(function(){
+		check_login('password');
+	});
+})
+</script>
