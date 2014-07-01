@@ -230,9 +230,7 @@ class Script extends CI_Controller{
 					$gold=$rs1[3];
 					$description=$rs1[4];
 				}
-				PTrace($gold);
-				PTrace($description);
-				die();
+
 				// 装备效果
 				preg_match_all('/<td> ([^<>]+)<\/td>/',$content2,$rs2);
 				$xiaoguo=implode(',',$rs2[1]);
@@ -293,7 +291,7 @@ class Script extends CI_Controller{
 				$params['be']=$be;
 				$params['color']=$array[$v]['level'];
 				$params['type']=$array[$v]['type'];
-				$params['goods_img'] = 'http://dotachuanqi.com/upload/goods_img/'.$v.'.jpg';
+				$params['goods_img'] = 'http://10.1.1.235/upload/goods_img/'.$v.'.jpg';
 				$this->goods_model->save($params);
 				$filename=IMGPATH.'goodsImg'.DIRECTORY_SEPARATOR.$v.'.jpg';
 			$this->GrabImage($content1[4][$key],$filename);
