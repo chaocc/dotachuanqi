@@ -25,7 +25,7 @@ class Goods_Api_model  extends CI_Model {
 		public function get_goods($params)
 		{
 			$goods_id = $params['goods_id'];
-			$result = $this->goods_model->get_goods($goods_id);
+			$result = $this->goods_model->get_one($goods_id);
 			$response['code']=200;
 			$response['msg']='OK';
 			$response['result']['down_offset'] = 1;

@@ -18,7 +18,8 @@ class Hero_Strong_Api_model  extends CI_Model {
 			$result = $this->hero_strong_model->select_all($params);
 			$response['code']=200;
 			$response['msg']='OK';
-			$response['result'] = $result;
+			$response['result']['down_offset'] =1;
+			$response['result']['content'] = $result;
 			return $response;
 		}
 		

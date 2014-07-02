@@ -172,6 +172,5 @@ class Zq extends CI_Controller{
 	 }
 		return $this->Zq_model->save($params);
 	 }
-	
 
 }

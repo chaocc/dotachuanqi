@@ -77,17 +77,27 @@ class Hero_model extends Base_model {
 	}
 	public function select_hero($params)
 	{
-		$where = '1=1';
-		$params['place'] = addslashes($params['place']);
-		$params['class'] = addslashes($params['class']);
+		$where = 'where 1=1';
+		if(isset($params['place']) && $params['place'])
+		{
+			$params['place'] = addslashes($params['place']);
+		}else{
+			$params['place']='';
+		}
+		if(isset($params['place']) && $params['place'])
+		{
+			$params['class'] = addslashes($params['class']);
+		}else{
+			$params['class'] = '';
+		}
 		if($params['place'] && !$params['class'])
 		{
-			$where = "where place = '{$params['place']}'";
+			$where = " AND place = '{$params['place']}'";
 		}else if(!$params['place'] && $params['class'])
 		{
-			$where = "where  class ='{$params['class']}'";
+			$where = " AND class ='{$params['class']}'";
 		}else if($params['place'] && $params['class']){
-			$where = "where place = '{$params['place']}' and class ='{$params['class']}'";
+			$where = " AND place = '{$params['place']}' and class ='{$params['class']}'";
 		}
 		$sql = "select `id`,`hero_img` from `{$this->table}`".$where.' order by `id`';
 		$query = $this->db->query($sql);

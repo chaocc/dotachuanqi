@@ -250,6 +250,18 @@ endif;
 		</div>
 		
 		<div class="form-group">
+			<label for="sort" class="col-sm-2 control-label">英雄排序</label>
+			<div class="col-sm-4">
+				<?php if($form_action == 'add'): ?>
+					<input type="text" class="form-control" id="sort" name="sort" placeholder="请输入英雄排序" value="" />
+				<?php else: ?>
+					<p class="form-control-static"><input type="text" class="form-control" id="sort" name="sort" placeholder="请输入英雄排序" value="<?php echo $hero['sort'];?>" /></p>
+				<?php endif; ?>
+			</div>
+			<div id="alert_sort" class="alert alert-danger col-sm-3 form-none form-nonen"></div>
+		</div>
+		
+		<div class="form-group">
 			<label for="goods" class="col-sm-2 control-label">装备</label>
 			
 			<?php if($form_action == 'add'): ?>

@@ -46,7 +46,7 @@
 			<label for="reason" class="col-sm-2 control-label">阵容组合</label>
 			<?php if($form_action == 'add'): ?>
 			<div class="col-sm-4" id="goods">
-				<?php for($i=0;$i<6;$i++){?>
+				<?php for($i=1;$i<6;$i++){?>
 				<div class="add choice" style="min-width:55px;">
 						<span></span>
 				</div>
@@ -57,7 +57,7 @@
 				<?php  
 					$hero_team['hero_id'] = explode(',',$hero_team['hero_id']);
 					$count=count($hero_team['hero_id']);
-					if($count<5)
+					if($count<6)
 					{
 					foreach($hero_team['hero_id'] as $k=>$v)
 					{
@@ -66,7 +66,7 @@
 				<input type="hidden" value="<?php echo $v;?>" name="hero_id[]"/>
 				<?php
 				} 
-				for($i=0;$i<6-$count;$i++) 
+				for($i=0;$i<5-$count;$i++) 
 				{
 					echo '<div class="add" style="min-width:55px;"><span></span></div>';
 				}

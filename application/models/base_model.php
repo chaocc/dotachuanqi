@@ -119,5 +119,11 @@ class Base_model extends CI_Model {
 		$this->db->query($sql, $db_values);
 		return $id ? $this->db->affected_rows() : $this->db->insert_id();
 	}
-	
+	public function select()
+	{
+		$sql = "SELECT * FROM `{$this->table}` order by id asc";
+		$query = $this->db->query($sql);
+		$result = $query->result();
+		return $result;
+	}
 }

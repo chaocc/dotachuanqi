@@ -13,7 +13,8 @@ class Zq_Api_model  extends CI_Model {
 			$result = $this->zq_model->select_all($params);
 			$response['code']=200;
 			$response['msg']='OK';
-			$response['result'] = $result;
+			$response['result']['down_offset'] = 1;
+			$response['result']['content'] = $result;
 			return $response;
 		}
 		

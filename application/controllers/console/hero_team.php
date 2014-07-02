@@ -10,6 +10,7 @@ class Hero_Team extends CI_Controller{
 		parent::__construct();
 		$this->Env_model->init_env();
 		$this->load->model('User_model');
+		$this->load->model('Hero_model');
 		$this->load->model('Hero_Team_model');
 		$this->User_model->check_status();
 		 $this->load->helper(array('form','url'));
@@ -185,7 +186,10 @@ class Hero_Team extends CI_Controller{
 				'hero_id'=>$hero_id
 			);
 		}
-		return $this->Hero_Team_model->save($params);
+		
+		$this->Hero_Team_model->save($params);
+		$this->zudui();
+		return true;
 	 }
 	 
 	 /**
@@ -230,6 +234,34 @@ class Hero_Team extends CI_Controller{
 		);
 		$this->load->admin_tpl('hero_team_form', $_page_vars);
 	}
+		public function zudui()
+	{
+		$result = array();
+		$rs = $this->Hero_Team_model->select();
 	
+		foreach($rs as $k =>$v)
+		{
+			$result[$k] = $v->hero_id;
+		}
+		$hero = $this->hero_model->select();
+		$zudui = array();
+		foreach($hero as $k=>$v)
+		{
+			foreach($result as $k1 =>$p)
+			{
+				$p = explode(',',$p);
+				if(in_array($v->id,$p))
+				{
+					$zudui[$v->id][]=$k1;
+				}
+			}
+		}
+		foreach($zudui as $k=>&$q)
+		{
+			$q = implode(',',$q);
+		}
+		$zudui = json_encode($zudui);
+     	file_put_contents(FCPATH.'/data/zudui.inc',$zudui);
+	}
 
 }

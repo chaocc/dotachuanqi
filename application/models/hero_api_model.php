@@ -27,7 +27,8 @@ class Hero_Api_model  extends CI_Model {
 				$result['skill'] = $hero_skill;
 				$response['code']=200;
 				$response['msg']='OK';
-				$response['result'] = $result;
+				$response['result']['down_offset'] = 1;
+				$response['result']['content'] = $result;
 			}
 				return $response;
 		}
@@ -40,7 +41,8 @@ class Hero_Api_model  extends CI_Model {
 				$result = $this->hero_model->select_hero($params);
 				$response['code'] = 200;
 				$response['msg'] = 'OK';
-				$response['result'] =$result;
+				$response['result']['down_offset'] = $params['pagenum'];
+				$response['result']['content'] = $result;
 			}
 				return $response;
 		}
