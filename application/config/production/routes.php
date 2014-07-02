@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "main";
+$route['default_controller'] = "console/home";
 $route['404_override'] = '';
 
 // 为管理子目录设置默认路由
