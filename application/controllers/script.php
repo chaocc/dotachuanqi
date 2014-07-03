@@ -76,13 +76,14 @@ class Script extends CI_Controller{
 			$params['place']=$array2[$v]['place'];
 			$params['class']=$array2[$v]['class'];
 			$params['hero_name']=$heroName;
-			$params['hero_img']=$heroImg;
+			$params['hero_img']="http://10.1.2.21/upload/hero_img/".$heroImg;
 			$params['attributes']=$attributes;
 			$params['star']=$star;
 			$params['description']=$description;
 			$params['tujin'] =$tujin;
 			$goods=$this->test($v);
 			$params['goods'] = $goods;
+			PTrace($params);
 			$ret = $this->hero_model->save_hero($params);
 			$filename=IMGPATH.'heroImg'.DIRECTORY_SEPARATOR.$v.'.jpg';
 			

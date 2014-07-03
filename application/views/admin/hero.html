@@ -23,6 +23,7 @@
 			<thead>
 				<tr>
 					<th>ID</th>
+					<th>英雄图片</th>
 					<th>英雄名称</th>
 					<th>英雄属性</th>
 					<th>英雄排位</th>
@@ -36,6 +37,7 @@
 				<?php foreach($hero as $v): ?>
 				<tr>
 					<td class="hero_id"><?php echo $v['id'];?></td>
+					<td class="hero_id"><img src='<?php echo $v['hero_img'];?>'/></td>
 					<td><?php echo $v['hero_name'];?></td>
 					<td><textarea class="form-control" rows="3" name="attributes" placeholder="请输入描述"><?php echo $v['attributes'];?></textarea></td>
 					<td><?php echo $v['place'];?> </td>
