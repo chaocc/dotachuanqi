@@ -19,44 +19,56 @@ class Zudui extends CI_Controller{
 		$rs = $this->hero_team_model->select();
 		foreach($rs as $k =>$v)
 		{
-			$result[$k] = $v->hero_id;
+			$result[$k]['hero_id']= $v->hero_id;
+			$result[$k]['type']=$v->type;
 		}
-		PTrace($result);
+		
 		$result2 = json_encode($result);
 		file_put_contents(FCPATH.'/data/hero_team.inc',$result2);
 		/*
 		$result = file_get_contents(FCPATH.'/data/hero_team2.inc');
 		$result  = json_decode($result,true);*/
 		$hero = $this->hero_model->select();
-		$zudui = array();
+		$zudui_tt = $zudui_yz = array();
 		$hero_array = array();
 		foreach($hero as $k=>$v)
 		{
 			foreach($result as $k1 =>$p)
 			{
-				$p = explode(',',$p);
-				if(in_array($v->id,$p))
+				if(in_array($v->id,explode(',',$p['hero_id'] ))  &&  $p['type']=='推图阵容')
 				{
-					$zudui[$v->id][]=$k1;
+					$zudui_tt[$v->id][]=intval($k1);
+					
+				}if(in_array($v->id,explode(',',$p['hero_id'] ))  &&  $p['type']=='远征阵容')
+				{
+					$zudui_yz[$v->id][]=intval($k1);
 				}
 			}
 
 			$hero_array[$v->id]['type'] = $v->class;
-			$hero_array[$v->id]['sort'] = $v->sort;
+			$hero_array[$v->id]['sort'] = intval($v->sort);
 		}
+
 		$hero_array = json_encode($hero_array);
 		file_put_contents(FCPATH.'/data/hero.inc',$hero_array);
-		foreach($zudui as $k=>&$q)
+		foreach($zudui_tt as $k=>&$q)
 		{
 			$q = implode(',',$q);
 		}
-		$zudui = json_encode($zudui);
-		file_put_contents(FCPATH.'/data/zudui.inc',$zudui);
+		$zudui_tt = json_encode($zudui_tt);
+		file_put_contents(FCPATH.'/data/zudui_tt.inc',$zudui_tt);
+		
+		foreach($zudui_yz as $k=>&$q)
+		{
+			$q = implode(',',$q);
+		}
+		$zudui_yz = json_encode($zudui_yz);
+		file_put_contents(FCPATH.'/data/zudui_yz.inc',$zudui_yz);
 	}
 	
 	public function get_zudui()
 	{
-		$params = array(3,1,33,4,5,7,39,53);
+		$params = array(3,1,33,4,15,44,40,17,33);
 		asort($params);
 		$result = $this->hero_team_model->get_zudui($params);
 		PTrace($result);

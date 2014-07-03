@@ -14,8 +14,9 @@ class Api extends CI_Controller{
 	public function index()
 	{
 			/*
-			$_POST='{"service":"app.hero.get_hero","app_id":"10151","hero_id":"1"}';
+			$_POST='{"service":"app.hero_team.get_zudui","app_id":"10151","hero_id":"3,1,33,4,15,44,40,17,33"}';
 			$_POST = json_decode($_POST,true);*/
+	
 			$response =  array('code'=>'404','msg'=>'action failed', 'data'=>'');
 			$params=array();
 			foreach($_POST as $k=>$v)

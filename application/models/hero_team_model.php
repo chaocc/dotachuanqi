@@ -81,12 +81,26 @@ class Hero_Team_model extends Base_model {
 			$params = json_encode($params);
 			return $params;
 		}else{
-			$result = file_get_contents(FCPATH.'/data/zudui.inc');
+			$result_tt = file_get_contents(FCPATH.'/data/zudui_tt.inc');
+			$result_yz = file_get_contents(FCPATH.'/data/zudui_yz.inc');
 			$hero_team=file_get_contents(FCPATH.'/data/hero_team.inc');
 			$hero = file_get_contents(FCPATH.'/data/hero.inc');
-			$result = json_decode($result,true);
+			$result_tt = json_decode($result_tt,true);
+			$result_yz = json_decode($result_yz,true);
 			$hero_team = json_decode($hero_team,true);
 			$hero = json_decode($hero,true);
+			$zudui_result = array();
+
+			$zudui_result_tt = $this->make_zudui($params,$result_tt,$hero_team,$hero);
+			$zudui_result_yz = $this->make_zudui($params,$result_yz,$hero_team,$hero);
+			$zudui_result['tt_hero_id'] =$zudui_result_tt;
+			$zudui_result['yz_hero_id'] =$zudui_result_yz;
+			$zudui_result = json_encode($zudui_result);
+			return $zudui_result;
+		}
+	}
+	public function make_zudui($params,$result,$hero_team,$hero)
+	{
 			$rs = array();
 			foreach($params as $k =>$v)
 			{
@@ -102,7 +116,7 @@ class Hero_Team_model extends Base_model {
 			sort($rs3);
 			$id = $rs3[count($rs3)-1];
 			$ids = array_search($id,$rs2,true);
-			$zudui = explode(',',$hero_team[$ids]);
+			$zudui = explode(',',$hero_team[$ids]['hero_id']);
 			$intersection = array_intersect($params,$zudui);
 			$params_diff = array_diff($params,$intersection);
 			$hero_team_diff = array_diff($zudui,$intersection);
@@ -133,7 +147,7 @@ class Hero_Team_model extends Base_model {
 									$max = $q;
 									
 								}
-								$max = intval($max);
+								
 							
 							}
 						}
@@ -147,8 +161,6 @@ class Hero_Team_model extends Base_model {
 					}
 			}
 				sort($zudui_result);
-				$zudui_result = json_encode($zudui_result);
 				return $zudui_result;
-		}
 	}
 }
