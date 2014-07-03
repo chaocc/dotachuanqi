@@ -21,6 +21,7 @@ class Zudui extends CI_Controller{
 		{
 			$result[$k] = $v->hero_id;
 		}
+		PTrace($result);
 		$result2 = json_encode($result);
 		file_put_contents(FCPATH.'/data/hero_team.inc',$result2);
 		/*

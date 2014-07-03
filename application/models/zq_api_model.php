@@ -14,7 +14,7 @@ class Zq_Api_model  extends CI_Model {
 			$response['code']=200;
 			$response['msg']='OK';
 			$response['result']['down_offset'] = 1;
-			$response['result']['content']['hero_id'] = $result;
+			$response['result']['content'] = $result;
 			return $response;
 		}
 		
