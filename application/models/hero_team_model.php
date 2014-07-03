@@ -75,10 +75,12 @@ class Hero_Team_model extends Base_model {
 	
 	public function get_zudui($params)
 	{
-		$result = file_get_contents(FCPATH.'/data/zudui.inc');
-		$hero_team=file_get_contents(FCPATH.'/data/hero_team.inc');
+		$result = file_get_contents(FCPATH.'/data/zudui2.inc');
+		$hero_team=file_get_contents(FCPATH.'/data/hero_team2.inc');
+		$hero = file_get_contents(FCPATH.'/data/hero.inc');
 		$result = json_decode($result,true);
 		$hero_team = json_decode($hero_team,true);
+		$hero = json_decode($hero,true);
 		$rs = array();
 		foreach($params as $k =>$v)
 		{
@@ -87,10 +89,29 @@ class Hero_Team_model extends Base_model {
 				$rs[$k] = $result[$v];
 			}
 		}
+		
 		$rs2 = explode(',',implode(',',$rs));
 		$rs2=array_count_values($rs2); 
-		sort($rs2); 
-		$id = $rs2[count($rs2)-1];
-		return $hero_team[$id];
+		$rs3 = $rs2;
+		asort($rs2); 
+		sort($rs3);
+		$id = $rs3[count($rs3)-1];
+		$ids = array_search($id,$rs2,true);
+		
+		
+		
+		$weizhi = array();
+		foreach($params as $k =>$v)
+		{
+			if(in_array($v,$hero_team[$ids]))
+			{
+				
+			}
+		}
+		
+		
+		
+		
+		return $hero_team[$ids];
 	}
 }

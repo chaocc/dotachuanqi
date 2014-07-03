@@ -19,7 +19,7 @@
  *
  */
  
-	if($_SERVER['SERVER_NAME']=='dotachuanqi.com')
+	if($_SERVER['SERVER_NAME']=='10.1.2.21' || $_SERVER['SERVER_NAME']=='dotachuanqi.com' )
 	{
 		define('ENVIRONMENT', 'development');
 	}else{

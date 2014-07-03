@@ -19,11 +19,8 @@ class Zudui extends CI_Controller{
 		$rs = $this->hero_team_model->select();
 		foreach($rs as $k =>$v)
 		{
-			$result[$k]['id'] = $v->hero_id;
-			$result[$k]['type'] = $v->type;
-			$result[$k]['sort'] = $v->sort;
+			$result[$k] = $v->hero_id;
 		}
-		PTrace($result);die();
 		$result2 = json_encode($result);
 		file_put_contents(FCPATH.'/data/hero_team.inc',$result2);
 		/*
@@ -31,6 +28,7 @@ class Zudui extends CI_Controller{
 		$result  = json_decode($result,true);*/
 		$hero = $this->hero_model->select();
 		$zudui = array();
+		$hero_array = array();
 		foreach($hero as $k=>$v)
 		{
 			foreach($result as $k1 =>$p)
@@ -40,9 +38,13 @@ class Zudui extends CI_Controller{
 				{
 					$zudui[$v->id][]=$k1;
 				}
-				
 			}
+			$hero_array[$k]['id'] = $v->id;
+			$hero_array[$k]['type'] = $v->class;
+			$hero_array[$k]['sort'] = $v->sort;
 		}
+		$hero_array = json_encode($hero_array);
+		file_put_contents(FCPATH.'/data/hero.inc',$hero_array);
 		foreach($zudui as $k=>&$q)
 		{
 			$q = implode(',',$q);
@@ -53,7 +55,7 @@ class Zudui extends CI_Controller{
 	
 	public function get_zudui()
 	{
-		$params = array(3,1,33,40,34);
+		$params = array(3,1,33,40,4);
 		$result = $this->hero_team_model->get_zudui($params);
 		PTrace($result);
 	}

@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'file','cookie', 'func');
+$autoload['helper'] = array('url','file','cookie', 'func');
 
 
 /*
@@ -109,8 +109,8 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('Env_model');
+$autoload['model'] = array('Env_model','Base_model');
 
 
 /* End of file autoload.php */
-/* Location: ./application/config/autoload.php */
+/* Location: ./application/config/production/autoload.php */
