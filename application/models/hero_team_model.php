@@ -136,7 +136,6 @@ class Hero_Team_model extends Base_model {
 								$max = intval($max);
 							
 							}
-							
 						}
 							
 					}
