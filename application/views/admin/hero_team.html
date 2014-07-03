@@ -1,22 +1,22 @@
 <div class="container">
 	<div class="page-header">
-		<h1 style="display:none;">最强阵容列表</h1>
+		<h1 style="display:none;">阵容库列表</h1>
 		<ul class="nav nav-pills">
-			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/hero_team">最强阵容列表</a></li>
-			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/hero_team/add">添加新最强阵容</a></li>
-			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/hero_team/deleted">已删除最强阵容</a></li>
+			<li class="<?php if (!isset($subnav_active) OR ! $subnav_active): ?>active<?php endif; ?>"><a href="console/hero_team">阵容库列表</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'add'): ?>active<?php endif; ?>"><a href="console/hero_team/add">添加新阵容库</a></li>
+			<li class="<?php if (isset($subnav_active) && $subnav_active == 'deleted'): ?>active<?php endif; ?>"><a href="console/hero_team/deleted">已删除阵容库</a></li>
 			<?php if (isset($subnav_active) && $subnav_active == 'edit'): ?>
-			<li class="active"><a href="javascript:;">编辑最强阵容</a></li>
+			<li class="active"><a href="javascript:;">编辑阵容库</a></li>
 			<?php endif;  ?>
 		</ul>
 	</div>
 	<div class="panel panel-primary">
-		<div class="panel-heading">最强阵容列表</div>
+		<div class="panel-heading">阵容库列表</div>
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>阵容ID</th>
-					<th>最强阵容名称</th>
+					<th>阵容库名称</th>
 					<th>类型</th>
 					<th>入库时间</th>
 					<th style="width:180px;">管理</th>

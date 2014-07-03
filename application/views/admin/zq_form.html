@@ -30,7 +30,7 @@
 			<?php if($form_action == 'add'): ?>
 			<label for="name" class="col-sm-2 control-label">阵容组合</label>
 			<div class="col-sm-4" id="goods">
-				<?php for($i=0;$i<6;$i++){?>
+				<?php for($i=0;$i<5;$i++){?>
 				<div class="add" style="min-width:55px;">
 						<span></span>
 				</div>
@@ -42,7 +42,7 @@
 				<?php  
 					$zq['hero_id'] = explode(',',$zq['hero_id']);
 					$count = count($zq['hero_id']);
-					if($count<5)
+					if($count<6)
 					{
 					foreach($zq['hero_id'] as $k=>$v)
 					{
@@ -50,7 +50,7 @@
 				<a><em>X</em><img src="/upload/hero_img/<?php echo $v;?>.jpg" style="height:55px;width:55px;"/>&nbsp;</a>
 				<input type="hidden" value="<?php echo $v;?>" name="hero_id[]"/>
 				<?php }
-					for($i=0;$i<6-$count;$i++)
+					for($i=0;$i<5-$count;$i++)
 					{
 						echo '<div class="add" style="min-width:55px;"><span></span></div>';
 					}

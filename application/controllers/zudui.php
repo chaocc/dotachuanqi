@@ -39,9 +39,9 @@ class Zudui extends CI_Controller{
 					$zudui[$v->id][]=$k1;
 				}
 			}
-			$hero_array[$k]['id'] = $v->id;
-			$hero_array[$k]['type'] = $v->class;
-			$hero_array[$k]['sort'] = $v->sort;
+
+			$hero_array[$v->id]['type'] = $v->class;
+			$hero_array[$v->id]['sort'] = $v->sort;
 		}
 		$hero_array = json_encode($hero_array);
 		file_put_contents(FCPATH.'/data/hero.inc',$hero_array);
@@ -55,18 +55,20 @@ class Zudui extends CI_Controller{
 	
 	public function get_zudui()
 	{
-		$params = array(3,1,33,40,4);
+		$params = array(3,1,33,4,5,7,39,53);
+		asort($params);
 		$result = $this->hero_team_model->get_zudui($params);
 		PTrace($result);
 	}
 	
-	public function test(){
+	public function test()
+	{
 		$arr = range(15,45); 
 		$t = self::getCombinationToString($arr, 5); 
 
 		$t = json_encode($t);
 		file_put_contents(FCPATH.'/data/hero_team2.inc',$t);
-}
+	}
 
 function getCombinationToString($arr,$m)
 {

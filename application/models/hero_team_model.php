@@ -75,43 +75,81 @@ class Hero_Team_model extends Base_model {
 	
 	public function get_zudui($params)
 	{
-		$result = file_get_contents(FCPATH.'/data/zudui2.inc');
-		$hero_team=file_get_contents(FCPATH.'/data/hero_team2.inc');
-		$hero = file_get_contents(FCPATH.'/data/hero.inc');
-		$result = json_decode($result,true);
-		$hero_team = json_decode($hero_team,true);
-		$hero = json_decode($hero,true);
-		$rs = array();
-		foreach($params as $k =>$v)
+		$params_count = count($params);
+		if($params_count==5)
 		{
-			if(isset($result[$v]))
+			$params = json_encode($params);
+			return $params;
+		}else{
+			$result = file_get_contents(FCPATH.'/data/zudui.inc');
+			$hero_team=file_get_contents(FCPATH.'/data/hero_team.inc');
+			$hero = file_get_contents(FCPATH.'/data/hero.inc');
+			$result = json_decode($result,true);
+			$hero_team = json_decode($hero_team,true);
+			$hero = json_decode($hero,true);
+			$rs = array();
+			foreach($params as $k =>$v)
 			{
-				$rs[$k] = $result[$v];
+				if(isset($result[$v]))
+				{
+					$rs[$k] = $result[$v];
+				}
 			}
-		}
-		
-		$rs2 = explode(',',implode(',',$rs));
-		$rs2=array_count_values($rs2); 
-		$rs3 = $rs2;
-		asort($rs2); 
-		sort($rs3);
-		$id = $rs3[count($rs3)-1];
-		$ids = array_search($id,$rs2,true);
-		
-		
-		
-		$weizhi = array();
-		foreach($params as $k =>$v)
-		{
-			if(in_array($v,$hero_team[$ids]))
+			$rs2 = explode(',',implode(',',$rs));
+			$rs2=array_count_values($rs2); 
+			$rs3 = $rs2;
+			asort($rs2); 
+			sort($rs3);
+			$id = $rs3[count($rs3)-1];
+			$ids = array_search($id,$rs2,true);
+			$zudui = explode(',',$hero_team[$ids]);
+			$intersection = array_intersect($params,$zudui);
+			$params_diff = array_diff($params,$intersection);
+			$hero_team_diff = array_diff($zudui,$intersection);
+
+			$zudui_result = $intersection;
+			foreach($hero_team_diff as $k =>$v)
 			{
-				
+					foreach($params_diff as $k1 =>$q)
+					{
+						
+						if(isset($hero[$q]))
+						{
+							if($hero[$q]['type']==$hero[$v]['type'])
+							{
+								$max = 0;
+								
+								if($hero[$q]['sort']>$max)
+								{
+									$max = $q;
+									
+								}
+								$max = intval($max);
+							}else{
+								$max = 0;
+								
+								if($hero[$q]['sort']>$max)
+								{
+									$max = $q;
+									
+								}
+								$max = intval($max);
+							
+							}
+							
+						}
+							
+					}
+					
+					if(isset($max) && $max)
+					{
+						unset($hero[$max]);
+						array_push($zudui_result,$max);
+					}
 			}
+				sort($zudui_result);
+				$zudui_result = json_encode($zudui_result);
+				return $zudui_result;
 		}
-		
-		
-		
-		
-		return $hero_team[$ids];
 	}
 }

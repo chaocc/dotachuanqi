@@ -18,7 +18,8 @@ class Hero_Team_Api_model  extends CI_Model {
 		}
 		public function get_zudui($params)
 		{
-			$result = $this->hero_team_model->get_zudui($params);
+			$params['hero_id'] = explode(',',$params['hero_id']);
+			$result = $this->hero_team_model->get_zudui($params['hero_id']);
 			$response['code']=200;
 			$response['msg']='OK';
 			$response['result']['down_offset'] =1;
